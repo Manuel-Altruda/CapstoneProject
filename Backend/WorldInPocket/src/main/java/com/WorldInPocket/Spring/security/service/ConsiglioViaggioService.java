@@ -32,7 +32,6 @@ public class ConsiglioViaggioService {
     }
 
     public List<ConsiglioViaggio> updateConsiglioViaggio(Long id, ConsiglioViaggio consiglioViaggio) {
-        // Check if the ConsiglioViaggio with the given ID exists
         Optional<ConsiglioViaggio> optionalConsiglioViaggio = consiglioViaggioRepository.findById(id);
 
         if (optionalConsiglioViaggio.isPresent()) {

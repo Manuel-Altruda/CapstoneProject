@@ -28,12 +28,13 @@ public class PopolaritaService {
     private VisitaRepository visitaRepository;
 
     @Autowired
-    private AzioneUtenteRepository azioneUtenteRepository; // You were missing this dependency
+    private AzioneUtenteRepository azioneUtenteRepository; 
 
     public void calcolaPopolaritaDestinazioni() {
         List<Destinazione> destinazioni = destinazioneRepository.findAll();
 
         for (Destinazione destinazione : destinazioni) {
+        	
             // Calcola la popolarità per ciascuna destinazione
             int popolarita = calcolaPopolarita(destinazione.getId());
             destinazione.setPopolarita(popolarita);
@@ -42,12 +43,13 @@ public class PopolaritaService {
     }
 
     private int calcolaPopolarita(Long destinazioneId) {
+    	
         // Calcola la popolarità in base alle recensioni e alle visite per la destinazione specifica
         List<Recensione> recensioni = recensioneRepository.findByDestinazioneId(destinazioneId);
         List<Visita> visite = visitaRepository.findByDestinazioneId(destinazioneId);
         List<AzioneUtente> azioniUtente = azioneUtenteRepository.findByOggettoId(destinazioneId);
 
-        // Esempio di calcolo di popolarità (sostituire con la logica reale)
+        // Esempio di calcolo di popolarità 
         int popolarita = azioniUtente.size() + recensioni.size() * 2 + visite.size();
         return popolarita;
     }

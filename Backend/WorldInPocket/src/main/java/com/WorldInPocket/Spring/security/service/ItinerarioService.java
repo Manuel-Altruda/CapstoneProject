@@ -47,18 +47,14 @@ public class ItinerarioService {
 	}
 
 	public Itinerario getItinerarioById(Long id) {
-        // Use the Spring Data JPA repository to retrieve an itinerary by its ID
         Optional<Itinerario> optionalItinerario = itinerarioRepository.findById(id);
 
         if (optionalItinerario.isPresent()) {
             return optionalItinerario.get();
         } else {
-            // Handle the case where the itinerary with the given ID is not found
-            // You can throw an exception or handle it according to your application's requirements
             throw new EntityNotFoundException("Itinerary not found with ID: " + id);
         }
     }
 
-    // Altri metodi di business relativi agli itinerari
 }
 

@@ -19,14 +19,13 @@ public class RicercaService {
 //    @Autowired
 //    private VoloProviderClient voloProviderClient;
 
+	/*da continuare*/
     public List<Alloggio> cercaAlloggi(RicercaAlloggiRequest request) {
 		return null;
-        // Esegui la ricerca di alloggi utilizzando il client AlloggioProviderClient
     }
 
     public List<Volo> cercaVoli(RicercaVoliRequest request) {
 		return null;
-        // Esegui la ricerca di voli utilizzando il client VoloProviderClient
     }
 
 	

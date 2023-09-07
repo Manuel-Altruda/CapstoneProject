@@ -25,8 +25,6 @@ public class AlloggioService {
         alloggio1.setPrezzoPerNotte(100.0);
         risultatiRicerca.add(alloggio1);
 
-        // Aggiungi altri dati di esempio...
-
         return risultatiRicerca;
     }
 }

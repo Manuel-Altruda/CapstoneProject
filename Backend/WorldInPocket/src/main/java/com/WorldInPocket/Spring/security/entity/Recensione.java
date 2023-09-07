@@ -15,17 +15,17 @@ public class Recensione {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long destinazioneId;
-    //@ManyToOne
-    //@JoinColumn(name = "alloggio_id")
-//    private Alloggio alloggio;
-//
-//    public Alloggio getAlloggio() {
-//		return alloggio;
-//	}
-//
-//	public void setAlloggio(Alloggio alloggio) {
-//		this.alloggio = alloggio;
-//	}
+    @ManyToOne
+    @JoinColumn(name = "alloggio_id")
+    private Alloggio alloggio;
+
+    public Alloggio getAlloggio() {
+		return alloggio;
+	}
+
+	public void setAlloggio(Alloggio alloggio) {
+		this.alloggio = alloggio;
+	}
 
 	private String commento;
     private int punteggio;

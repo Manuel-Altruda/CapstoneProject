@@ -32,6 +32,5 @@ public class ConsiglioViaggioController {
         return new ResponseEntity<>(consiglioViaggio, HttpStatus.OK);
     }
 
-    // Implementa gli endpoint per gestire i consigli di viaggio
 }
 

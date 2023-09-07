@@ -32,6 +32,6 @@ public class PrenotazioneVoloController {
         return new ResponseEntity<>(prenotazioneVolo, HttpStatus.OK);
     }
 
-    // Implementa gli endpoint per gestire le prenotazioni di volo
+    /* Devo Implementare altri endpoint */
 }
 

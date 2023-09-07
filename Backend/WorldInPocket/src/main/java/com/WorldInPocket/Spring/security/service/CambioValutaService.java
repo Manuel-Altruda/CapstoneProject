@@ -31,14 +31,13 @@ public class CambioValutaService {
 	}
 
 	public CambioValuta getCambioValutaById(Long id) {
-        // Use the Spring Data JPA repository to retrieve a currency exchange rate by its ID
+        
         Optional<CambioValuta> optionalCambioValuta = cambioValutaRepository.findById(id);
 
         if (optionalCambioValuta.isPresent()) {
             return optionalCambioValuta.get();
         } else {
-            // Handle the case where the currency exchange rate with the given ID is not found
-            // You can throw an exception or handle it according to your application's requirements
+            
             throw new EntityNotFoundException("Currency exchange rate not found with ID: " + id);
         }
     }

@@ -29,8 +29,6 @@ public class VoloService {
         volo1.setPrezzo(800.0);
         risultatiRicerca.add(volo1);
 
-        // Aggiungi altri dati di esempio...
-
         return risultatiRicerca;
     }
 	

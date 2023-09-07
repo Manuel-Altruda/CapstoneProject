@@ -32,6 +32,5 @@ public class CambioValutaController {
         return new ResponseEntity<>(cambioValuta, HttpStatus.OK);
     }
 
-    // Implementa gli endpoint per gestire il cambio valuta
 }
 

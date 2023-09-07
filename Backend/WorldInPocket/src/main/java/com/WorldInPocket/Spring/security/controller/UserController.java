@@ -18,47 +18,6 @@ import com.WorldInPocket.Spring.security.entity.User;
 import com.WorldInPocket.Spring.security.repository.UserRepository;
 import com.WorldInPocket.Spring.security.service.UserService;
 
-//@RestController
-//@RequestMapping("/api/user") // probabilmente da modificare in /user
-//public class UserController {
-//    @Autowired
-//    private UserRepository utenteRepository;
-//
-//    @GetMapping
-//    public List<User> getAllUtenti() {
-//        return utenteRepository.findAll();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public User getUtenteById(@PathVariable Long id) {
-//        return utenteRepository.findById(id).orElse(null);
-//    }
-//
-//    @PostMapping
-//    public User createUtente(@RequestBody User utente) {
-//        return utenteRepository.save(utente);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public User updateUtente(@PathVariable Long id, @RequestBody User utenteDetails) {
-//        User utente = utenteRepository.findById(id).orElse(null);
-//        if (utente != null) {
-//            utente.setUsername(utenteDetails.getUsername());
-//            utente.setName(utenteDetails.getName());
-//            utente.setSurname(utenteDetails.getSurname());
-//            utente.setEmail(utenteDetails.getEmail());
-//            return utenteRepository.save(utente);
-//        }
-//        return null;
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void deleteUtente(@PathVariable Long id) {
-//        utenteRepository.deleteById(id);
-//    }
-//    
-//}
-	
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -106,6 +65,49 @@ public class UserController {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+//@RestController
+//@RequestMapping("/api/user") // probabilmente da modificare in /user
+//public class UserController {
+//    @Autowired
+//    private UserRepository utenteRepository;
+//
+//    @GetMapping
+//    public List<User> getAllUtenti() {
+//        return utenteRepository.findAll();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public User getUtenteById(@PathVariable Long id) {
+//        return utenteRepository.findById(id).orElse(null);
+//    }
+//
+//    @PostMapping
+//    public User createUtente(@RequestBody User utente) {
+//        return utenteRepository.save(utente);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public User updateUtente(@PathVariable Long id, @RequestBody User utenteDetails) {
+//        User utente = utenteRepository.findById(id).orElse(null);
+//        if (utente != null) {
+//            utente.setUsername(utenteDetails.getUsername());
+//            utente.setName(utenteDetails.getName());
+//            utente.setSurname(utenteDetails.getSurname());
+//            utente.setEmail(utenteDetails.getEmail());
+//            return utenteRepository.save(utente);
+//        }
+//        return null;
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteUtente(@PathVariable Long id) {
+//        utenteRepository.deleteById(id);
+//    }
+//    
+//}
+	
+
 }
 
 
