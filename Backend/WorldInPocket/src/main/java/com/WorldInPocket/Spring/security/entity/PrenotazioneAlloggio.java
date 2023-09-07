@@ -30,6 +30,7 @@ public class PrenotazioneAlloggio {
     @Column(name = "data_check_in")
     private Date dataCheckIn;   
     private Date dataCheckOut;
+    private double prezzoPerNotte;
 	
     
     
@@ -80,6 +81,14 @@ public class PrenotazioneAlloggio {
 
 	public void setUtenteEmail(String utenteEmail) {
 		this.utenteEmail = utenteEmail;
+	}
+
+	public double getPrezzoPerNotte() {
+		return prezzoPerNotte;
+	}
+
+	public void setPrezzoPerNotte(double prezzoPerNotte) {
+		this.prezzoPerNotte = prezzoPerNotte;
 	}
 
 }

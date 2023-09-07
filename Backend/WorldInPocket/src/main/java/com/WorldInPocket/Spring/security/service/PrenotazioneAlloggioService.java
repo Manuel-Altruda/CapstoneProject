@@ -20,7 +20,6 @@ public class PrenotazioneAlloggioService {
     @Autowired
     private final PrenotazioneAlloggioRepository prenotazioneAlloggioRepository;
     
-    @Autowired
     public PrenotazioneAlloggioService(PrenotazioneAlloggioRepository prenotazioneAlloggioRepository) {
         this.prenotazioneAlloggioRepository = prenotazioneAlloggioRepository;
     }
