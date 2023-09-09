@@ -1,0 +1,15 @@
+<div class="card">
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="60" class="mr-2" />
+    </ng-template>
+    <ng-template pTemplate="end">
+      <p-button class="custom-button" label="Login" label="Secondary" styleClass="p-button-secondary" (click)="openLoginModal()"></p-button>
+      <p-button class="custom-button" label="Register" label="Secondary" styleClass="p-button-secondary" (click)="openRegisterModal()"></p-button>
+    </ng-template>
+  </p-menubar>
+</div>
+
+
+
+<!-- <button label="Registrati" (click)="openRegisterModal()">Registrati</button>-->

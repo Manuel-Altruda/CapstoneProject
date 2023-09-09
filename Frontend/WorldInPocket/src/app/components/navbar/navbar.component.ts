@@ -1,0 +1,95 @@
+import { Component, OnInit } from '@angular/core';
+import { MenuItem, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { RegisterModalComponent } from '../register-modal/register-modal.component';
+import { LoginModalComponent } from '../login-modal/login-modal.component';
+
+
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  providers: [DialogService]
+})
+export class NavbarComponent implements OnInit {
+  items: MenuItem[] | undefined;
+  loading: boolean = false;
+
+  load() {
+      this.loading = true;
+
+      setTimeout(() => {
+          this.loading = false
+      }, 2000);
+  }
+
+  constructor(private dialogService: DialogService, public messageService: MessageService) {}
+
+  ngOnInit() {
+    this.items = [
+      {
+          label: 'Hotel',
+          icon: 'pi pi-fw pi-file',
+      },
+      {
+          label: 'Voli',
+          icon: 'pi pi-fw pi-pencil',
+      },
+      {
+          label: 'Noleggio Auto',
+          icon: 'pi pi-fw pi-user'
+      },
+      {
+          label: 'Case / Ville',
+          icon: 'pi pi-fw pi-calendar',
+      },
+      {
+          label: 'Diventa Partner',
+          icon: 'pi pi-fw pi-power-off'
+      }
+
+  ];
+}
+
+  isLoginModalVisible = false;
+  isRegisterModalVisible = false;
+
+openLoginModal() {
+  this.dialogService.open(LoginModalComponent, {
+    header: 'Accedi', // Titolo del modale di login
+    width: '70%',   // Larghezza del modale
+    contentStyle: {
+      'max-height': '500px', // Altezza massima del contenuto
+      overflow: 'auto'       // Scroll se il contenuto è troppo grande
+    }
+  });
+  this.isLoginModalVisible = true;
+}
+
+openRegisterModal() {
+  this.dialogService.open(RegisterModalComponent, {
+    header: 'Registrati',
+    width: '70%',
+    contentStyle: {
+      'max-height': '500px',
+      overflow: 'auto'
+    }
+  });
+  this.isRegisterModalVisible = true;
+}
+
+
+    ref: DynamicDialogRef | undefined;
+
+
+    ngOnDestroy() {
+        if (this.ref) {
+            this.ref.close();
+        }
+    }
+
+}
+
+
+
