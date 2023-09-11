@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IloginUser } from 'src/app/interfaces/IloginUser';
+import { IUser } from 'src/app/interfaces/Iuser';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -10,41 +11,26 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  jwtHelper: any;
-  constructor(
-    private authSvc: AuthService,
-    private router: Router
-  ) {}
-
-  data: IloginUser = {
-    email: '',
+  user: IloginUser = {
+    username: '',
     password: '',
   };
+  errorMessage: string = '';
 
-  modalTitle: string = 'Titolo';
-  modalTitleUser: string = 'User';
-  modalContent: string = 'Content';
-  @ViewChild('content')
-  mymodal!: ElementRef;
-  logSub!: Subscription;
-
-  ngOnDestroy() {
-    if (this.logSub) this.logSub.unsubscribe();
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.logSub = this.authSvc.login(this.data).subscribe((access) => {
-      let decodedToken = this.jwtHelper.decodeToken(access.accessToken);
-      this.modalTitle = `Benvenuto, `;
-      this.modalTitleUser = access.user.username;
-      this.modalContent = 'Sarai reindirizzato alla home in 3 secondi..';
-      setTimeout(() => this.redirectNow(), 3000);
-    });
+    this.authService.login(this.user).subscribe(
+      (response: any) => {
+        console.log('Risposta dal server:', response);
+        this.router.navigate(['/dashboard']);
+
+      },
+      (error: any) => {
+        console.error('Errore durante il login:', error);
+        this.errorMessage = 'Credenziali non valide. Riprova.';
+      }
+    );
   }
 
-
-
-  redirectNow() {
-    this.router.navigate(['']);
-  }
 }

@@ -58,7 +58,7 @@ export class NavbarComponent implements OnInit {
 openLoginModal() {
   this.dialogService.open(LoginModalComponent, {
     header: 'Accedi', // Titolo del modale di login
-    width: '70%',   // Larghezza del modale
+    width: '40%',   // Larghezza del modale
     contentStyle: {
       'max-height': '500px', // Altezza massima del contenuto
       overflow: 'auto'       // Scroll se il contenuto è troppo grande
@@ -70,7 +70,7 @@ openLoginModal() {
 openRegisterModal() {
   this.dialogService.open(RegisterModalComponent, {
     header: 'Registrati',
-    width: '70%',
+    width: '40%',
     contentStyle: {
       'max-height': '500px',
       overflow: 'auto'

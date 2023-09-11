@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { IauthResponse } from 'src/app/interfaces/IauthResponse';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -17,23 +17,30 @@ export class AuthService {
   private loggedUser=new BehaviorSubject<null | IUser>(null);
   isUserLogged=this.loggedUser.asObservable();
   private storageUser:IUser;
+  user: string = "${user}";
 
   constructor(private http:HttpClient, private router:Router){
     this.storageUser=JSON.parse(localStorage.getItem("user")!);
     if(this.storageUser) this.loggedUser.next(this.storageUser);
   }
 
-  register(user:IregisterUser)
-  {
+  register(user:IregisterUser) : Observable<any> {
     return this.http.post(environment.registrazione, user);
   }
 
-  login(user:IloginUser){
-    this.http.post<IUser>(environment.login, user).subscribe(u=>{
-      this.loggedUser.next(u);
-      localStorage.setItem("user", JSON.stringify(u));
-      this.router.navigate(["/clienti"]);
-    });
+  login(user:IloginUser) : Observable <IUser> {
+    return this.http.post<IUser>(environment.login, user).pipe(
+      map((u: IUser) => {
+        this.loggedUser.next(u);
+        localStorage.setItem("user", JSON.stringify(u));
+        this.router.navigate(["/dashboard"]);
+        return u; // Restituisci l'oggetto IUser
+      })
+    );
+  }
+
+  isUserLoggedIn(): boolean {
+    return !!this.loggedUser.value;
   }
 
   logout(){
@@ -41,4 +48,6 @@ export class AuthService {
     localStorage.removeItem("user");
     this.router.navigate(["/"]);
   }
+
+
 }
