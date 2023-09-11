@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,21 +23,63 @@ import com.WorldInPocket.Spring.security.service.PrenotazioneAlloggioService;
 @RestController
 @RequestMapping("/api/prenotazione-alloggi")
 public class PrenotazioneAlloggioController {
+	
+	    @Autowired
+	    private PrenotazioneAlloggioService prenotazioneAlloggioService;
 
-    @Autowired
-    private PrenotazioneAlloggioService prenotazioneAlloggioService;
+	    @GetMapping
+	    public ResponseEntity<List<PrenotazioneAlloggio>> getAllPrenotazioniAlloggio() {
+	        List<PrenotazioneAlloggio> prenotazioniAlloggio = prenotazioneAlloggioService.getAllPrenotazioniAlloggio();
+	        return new ResponseEntity<>(prenotazioniAlloggio, HttpStatus.OK);
+	    }
 
-    @GetMapping
-    public ResponseEntity<List<PrenotazioneAlloggio>> getAllPrenotazioniAlloggio() {
-        List<PrenotazioneAlloggio> prenotazioniAlloggio = prenotazioneAlloggioService.getAllPrenotazioniAlloggio();
-        return new ResponseEntity<>(prenotazioniAlloggio, HttpStatus.OK);
-    }
+	    @GetMapping("/{id}")
+	    public ResponseEntity<PrenotazioneAlloggio> getPrenotazioneAlloggioById(@PathVariable Long id) {
+	        PrenotazioneAlloggio prenotazioneAlloggio = prenotazioneAlloggioService.getPrenotazioneAlloggioById(id);
+	        if (prenotazioneAlloggio != null) {
+	            return new ResponseEntity<>(prenotazioneAlloggio, HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PrenotazioneAlloggio> getPrenotazioneAlloggio(@PathVariable Long id) {
-        PrenotazioneAlloggio prenotazioneAlloggio = prenotazioneAlloggioService.getPrenotazioneAlloggioById(id);
-        return new ResponseEntity<>(prenotazioneAlloggio, HttpStatus.OK);
-    }
+	    @PostMapping
+	    public ResponseEntity<PrenotazioneAlloggio> createPrenotazioneAlloggio(@RequestBody PrenotazioneAlloggio prenotazioneAlloggio) {
+	        PrenotazioneAlloggio savedPrenotazione = prenotazioneAlloggioService.createPrenotazioneAlloggio(prenotazioneAlloggio);
+	        return new ResponseEntity<>(savedPrenotazione, HttpStatus.CREATED);
+	    }
+
+	    @GetMapping("/utente/{emailUtente}")
+	    public ResponseEntity<List<PrenotazioneAlloggio>> getPrenotazioniAlloggioUtente(@PathVariable String emailUtente) {
+	        List<PrenotazioneAlloggio> prenotazioniUtente = prenotazioneAlloggioService.getPrenotazioniAlloggioUtente(emailUtente);
+	        if (!prenotazioniUtente.isEmpty()) {
+	            return new ResponseEntity<>(prenotazioniUtente, HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
+
+	    @PutMapping("/{id}")
+	    public ResponseEntity<PrenotazioneAlloggio> updatePrenotazioneAlloggio(@PathVariable Long id, @RequestBody PrenotazioneAlloggio prenotazioneAlloggio) {
+	        PrenotazioneAlloggio updatedPrenotazione = prenotazioneAlloggioService.updatePrenotazioneAlloggio(id, prenotazioneAlloggio);
+	        if (updatedPrenotazione != null) {
+	            return new ResponseEntity<>(updatedPrenotazione, HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
+
+	    @DeleteMapping("/{id}")
+	    public ResponseEntity<Void> deletePrenotazioneAlloggio(@PathVariable Long id) {
+	        boolean deleted = prenotazioneAlloggioService.deletePrenotazioneAlloggio(id);
+	        if (deleted) {
+	            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
+	}
+
     
 //    @PostMapping("/nuova-prenotazione")
 //    public ResponseEntity<String> prenotaAlloggio(
@@ -55,5 +99,5 @@ public class PrenotazioneAlloggioController {
 //    }
 // 
 
-}
+
 

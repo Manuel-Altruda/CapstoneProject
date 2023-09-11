@@ -47,12 +47,7 @@ public class SecurityConfig {
         this.authenticationFilter = authenticationFilter;
     }
 
-    /* commento perchè non ho ancora un api */
-//    @Bean
-//    public RestTemplate restTemplate() {
-//	     return new RestTemplate();
-//	 }
-    
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -73,7 +68,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
             .authorizeRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .anyRequest().authenticated()
             )

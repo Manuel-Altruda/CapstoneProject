@@ -2,12 +2,16 @@ package com.WorldInPocket.Spring.security.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "alloggio")
 public class Alloggio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +19,7 @@ public class Alloggio {
     private String nome;
     private String indirizzo;
     private String destinazione;
+    private String tipo;
     private String descrizione;
     private Date dataCheckIn;
     private Date dataCheckOut;
@@ -91,5 +96,13 @@ public class Alloggio {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 }

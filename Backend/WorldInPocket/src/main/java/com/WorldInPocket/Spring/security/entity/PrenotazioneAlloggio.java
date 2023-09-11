@@ -91,4 +91,5 @@ public class PrenotazioneAlloggio {
 		this.prezzoPerNotte = prezzoPerNotte;
 	}
 
+
 }

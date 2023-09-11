@@ -81,6 +81,13 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.Progetto_Settimanale</groupId>
+			<artifactId>
+				GestionePrenotazioniSecurityImplementation
+			</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

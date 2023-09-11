@@ -3,19 +3,26 @@ package com.WorldInPocket.Spring.security.security;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import com.WorldInPocket.Spring.security.entity.User;
 import com.WorldInPocket.Spring.security.exception.MyAPIException;
+import com.WorldInPocket.Spring.security.repository.UserRepository;
 
 import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
-
+	
+	@Autowired
+	UserRepository userRepo;
+	
     @Value("${app-jwt-secret}")
     private String jwtSecret;
 
@@ -26,12 +33,18 @@ public class JwtTokenProvider {
     public String generateToken(Authentication authentication){
         String username = authentication.getName();
 
+        User user=new User();
+        if(userRepo.existsByUsername(username))
+            user=userRepo.findByUsername(username);
+        else user=userRepo.findByEmail(username);
+
         Date currentDate = new Date();
 
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
 
         String token = Jwts.builder()
                 .setSubject(username)
+                .claim("role", user.getRoles())
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)
                 .signWith(key())

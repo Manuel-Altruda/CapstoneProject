@@ -36,22 +36,29 @@ public class PrenotazioneAlloggioService {
         return prenotazioneAlloggioRepository.save(prenotazioneAlloggio);
     }
 
-    public PrenotazioneAlloggio updatePrenotazioneAlloggio(Long id, PrenotazioneAlloggio prenotazioneAlloggio) {
-        PrenotazioneAlloggio existingPrenotazioneAlloggio = prenotazioneAlloggioRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Prenotazione di alloggio non trovata con ID: " + id));
-        return prenotazioneAlloggioRepository.save(existingPrenotazioneAlloggio);
+    public PrenotazioneAlloggio updatePrenotazioneAlloggio(Long prenotazioneId, PrenotazioneAlloggio nuovaPrenotazione) {
+        PrenotazioneAlloggio prenotazioneEsistente = getPrenotazioneAlloggioById(prenotazioneId);
+        if (prenotazioneEsistente != null) {
+            prenotazioneEsistente.setUtenteEmail(nuovaPrenotazione.getUtenteEmail());
+            prenotazioneEsistente.setUtenteEmail(nuovaPrenotazione.getUtenteEmail());
+
+            return prenotazioneAlloggioRepository.save(prenotazioneEsistente);
+        }
+        return null; // Restituisci null se la prenotazione non esiste
     }
 
-    public void deletePrenotazioneAlloggio(Long id) {
+    public boolean deletePrenotazioneAlloggio(Long id) {
         PrenotazioneAlloggio prenotazioneAlloggio = prenotazioneAlloggioRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Prenotazione di alloggio non trovata con ID: " + id));
         prenotazioneAlloggioRepository.delete(prenotazioneAlloggio);
+		return false;
     }
 
 	public List<PrenotazioneAlloggio> getAllPrenotazioniAlloggio() {
 		return prenotazioneAlloggioRepository.findAll();
 	}
 
+	
 	public PrenotazioneAlloggio getPrenotazioneAlloggioById(Long id) {
         Optional<PrenotazioneAlloggio> optionalPrenotazioneAlloggio = prenotazioneAlloggioRepository.findById(id);
 

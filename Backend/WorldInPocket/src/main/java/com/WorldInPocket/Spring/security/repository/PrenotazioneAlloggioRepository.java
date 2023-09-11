@@ -31,4 +31,5 @@ public interface PrenotazioneAlloggioRepository extends JpaRepository<Prenotazio
 	List<PrenotazioneAlloggio> findByDataCheckOut(Date dataCheckOut);
 
 	List<PrenotazioneAlloggio> findByAlloggio(Alloggio alloggio);
+	
 }
