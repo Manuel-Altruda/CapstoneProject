@@ -10,12 +10,15 @@ import { MessagesModule } from 'primeng/messages';
 import { PasswordModule } from 'primeng/password';
 import { MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CarouselModule } from 'primeng/carousel';
 import { ToastModule } from 'primeng/toast';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { GalleriaModule } from 'primeng/galleria';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
+import { TagModule } from 'primeng/tag';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,7 +47,10 @@ import { RegisterModalComponent } from './components/register-modal/register-mod
     DividerModule,
     FormsModule,
     GalleriaModule,
+    CarouselModule,
     RadioButtonModule,
+    TagModule,
+    CardModule,
     PasswordModule,
     MessagesModule,
     DynamicDialogModule,

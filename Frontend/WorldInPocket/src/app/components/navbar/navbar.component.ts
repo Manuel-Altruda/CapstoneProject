@@ -54,8 +54,16 @@ export class NavbarComponent implements OnInit {
 
   isLoginModalVisible = false;
   isRegisterModalVisible = false;
+  visible: boolean = false;
+
+  showLogin: boolean = true;
+  showRegister: boolean = false;
 
 openLoginModal() {
+  this.visible = true;
+  this.showLogin = true;
+  this.showRegister = false;
+
   this.dialogService.open(LoginModalComponent, {
     header: 'Accedi', // Titolo del modale di login
     width: '40%',   // Larghezza del modale
@@ -68,6 +76,8 @@ openLoginModal() {
 }
 
 openRegisterModal() {
+  this.visible = true;
+
   this.dialogService.open(RegisterModalComponent, {
     header: 'Registrati',
     width: '40%',

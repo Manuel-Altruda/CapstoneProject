@@ -1,14 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhotoService {
   getImages(): Promise<any[]> {
-    // Effettua la chiamata HTTP o l'operazione asincrona per ottenere le immagini
-    // e restituisci una promessa con i dati delle immagini quando è completata.
     return new Promise<any[]>((resolve) => {
-      // Simulazione di una chiamata asincrona
       setTimeout(() => {
         const images: any[] = [/* ... array di immagini ... */];
         resolve(images);
@@ -16,7 +15,12 @@ export class PhotoService {
     });
   }
 
+  private apiUrl = '/api/images'; // Sostituisci con l'URL effettivo del tuo backend
 
-constructor() { }
+  constructor(private http: HttpClient) {}
+
+  getAllImages(): Observable<ImageData[]> {
+    return this.http.get<ImageData[]>(this.apiUrl);
+  }
 
 }

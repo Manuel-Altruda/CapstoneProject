@@ -1,0 +1,46 @@
+.custom-button {
+  font-size: 10px;
+  margin-right: 10px;
+
+}
+
+.custom-button {
+  margin-right: 10px; /* Aggiungi margine a destra per separare i pulsanti */
+}
+
+/* Stile per spaziare i campi input */
+.input-container {
+  margin-bottom: 17px; /* Imposta il margine inferiore per spaziare i campi input */
+}
+
+/* Stile per personalizzare l'etichetta (label) */
+.input-container label {
+  font-size: 16px; /* Regola la dimensione del testo dell'etichetta */
+}
+
+
+
+/* Stile personalizzato per etichette */
+.label-floating {
+  position: relative;
+}
+
+.label-floating input {
+  padding-top: 10px; /* Regola il margine superiore per far spazio all'etichetta */
+}
+
+.label-floating label {
+  position: absolute;
+  top: 8px; /* Posizione dell'etichetta sopra l'input */
+  left: 16px; /* Margine sinistro dell'etichetta */
+  transition: top 0.2s ease, left 0.2s ease; /* Aggiungi una transizione per un effetto di scorrimento fluido */
+}
+
+/* Stile per etichette in input in cui è stato inserito del testo */
+.label-floating input:focus + label,
+.label-floating input:not(:placeholder-shown) + label {
+  top: -8px; /* Alza l'etichetta quando l'input ha il focus o contiene del testo */
+  font-size: 12px; /* Dimensione del testo dell'etichetta quando è alzata */
+  left: 0; /* Sposta l'etichetta a sinistra quando è alzata */
+  color: #333; /* Colore dell'etichetta quando è alzata */
+}

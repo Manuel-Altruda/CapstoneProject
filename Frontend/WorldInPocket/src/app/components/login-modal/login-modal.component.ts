@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class LoginModalComponent {
 
   loginData = {
-    email: '',
+    username: '',
     password: '',
   };
 
