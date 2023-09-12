@@ -1,15 +1,73 @@
-<div class="card flex justify-content-center">
+<!-- <div class="custom-navbar">
   <p-menubar [model]="items">
     <ng-template pTemplate="start">
-      <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="60" class="mr-2" />
+
+      <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="60" class="mr-2"/>
+      <div class="bar">
+        <div class="location">
+          <p>Location</p>
+          <input type="text" placeholder="Where are you going?">
+        </div>
+        <div class="check-in">
+              <p>Check in</p>
+          <input type="text" placeholder="Add dates">
+        </div>
+        <div class="check-out">
+              <p>Check out</p>
+          <input type="text" placeholder="Add dates">
+        </div>
+        <div class="guests">
+              <p>Guests</p>
+          <input type="text" placeholder="Add guests">
+          <span><i class="lni lni-search-alt"></i></span>
+        </div>
+      </div>
     </ng-template>
+
     <ng-template pTemplate="end">
+
       <p-button class="custom-button" label="Login" label="Accedi" styleClass="p-button-secondary" (click)="openLoginModal()"></p-button>
       <p-button class="custom-button" label="Register" label="Registrati" styleClass="p-button-secondary" (click)="openRegisterModal()"></p-button>
+
     </ng-template>
   </p-menubar>
 </div>
 
 
 
-<!-- <button label="Registrati" (click)="openRegisterModal()">Registrati</button>-->
+<button label="Registrati" (click)="openRegisterModal()">Registrati</button>-->
+
+<nav class="navbar" style="
+display: flex;
+justify-content: space-between;
+">
+  <div class="navbar-logo">
+      <a href="#">Logo</a>
+  </div>
+  <div class="navbar-search">
+      <div class="bar">
+          <div class="location">
+              <p>Location</p>
+              <input type="text" placeholder="Where are you going?">
+          </div>
+          <div class="check-in">
+              <p>Check in</p>
+              <input type="text" placeholder="Add dates">
+          </div>
+          <div class="check-out">
+              <p>Check out</p>
+              <input type="text" placeholder="Add dates">
+          </div>
+          <div class="guests">
+              <p>Guests</p>
+              <input type="text" placeholder="Add guests" class="w-full">
+              <span><i class="lni lni-search-alt"></i></span>
+          </div>
+      </div>
+  </div>
+  <ul class="navbar-links">
+    <p-button class="custom-button" label="Login" label="Accedi" styleClass="p-button-secondary" (click)="openLoginModal()"></p-button>
+    <p-button class="custom-button" label="Register" label="Registrati" styleClass="p-button-secondary" (click)="openRegisterModal()"></p-button>
+  </ul>
+</nav>
+

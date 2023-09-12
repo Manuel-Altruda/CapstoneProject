@@ -13,6 +13,7 @@ import { LoginModalComponent } from '../login-modal/login-modal.component';
   providers: [DialogService]
 })
 export class NavbarComponent implements OnInit {
+  searchQuery: string = '';
   items: MenuItem[] | undefined;
   loading: boolean = false;
 
@@ -27,29 +28,7 @@ export class NavbarComponent implements OnInit {
   constructor(private dialogService: DialogService, public messageService: MessageService) {}
 
   ngOnInit() {
-    this.items = [
-      {
-          label: 'Hotel',
-          icon: 'pi pi-fw pi-file',
-      },
-      {
-          label: 'Voli',
-          icon: 'pi pi-fw pi-pencil',
-      },
-      {
-          label: 'Noleggio Auto',
-          icon: 'pi pi-fw pi-user'
-      },
-      {
-          label: 'Case / Ville',
-          icon: 'pi pi-fw pi-calendar',
-      },
-      {
-          label: 'Diventa Partner',
-          icon: 'pi pi-fw pi-power-off'
-      }
 
-  ];
 }
 
   isLoginModalVisible = false;

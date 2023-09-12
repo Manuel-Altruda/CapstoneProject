@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { HotelService } from './../../service/hotel.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/service/photo.service';
 
 @Component({
@@ -10,10 +10,10 @@ import { PhotoService } from 'src/app/service/photo.service';
   providers: [PhotoService]
 })
 export class HomeComponent implements OnInit{
-
+  images: any[] | undefined;
   flights: any[] = [];
   hotels: any[] = [];
-
+  valueChange: EventEmitter<any> = new EventEmitter<any>();
   responsiveOptions: any[] | undefined;
 
   constructor(private hotelService: HotelService, private http: HttpClient) {}
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit{
   ngOnInit() : void {
 
     this.http.get<any>('./assets/hotel.json').subscribe(data => {
-      // Estrai gli hotel dall'array "hotels" nel file JSON
+
       this.hotels = data.hotels;
     });
 
@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit{
 }
 
   getThumbnailUrl(thumbnail: string): string {
-    // Assicurati di includere il percorso relativo alla cartella delle immagini
     return `assets/thumbnails/${thumbnail}`;
   }
 

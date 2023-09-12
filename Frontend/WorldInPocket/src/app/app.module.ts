@@ -15,8 +15,10 @@ import { ToastModule } from 'primeng/toast';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { GalleriaModule } from 'primeng/galleria';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -47,7 +49,9 @@ import { RegisterModalComponent } from './components/register-modal/register-mod
     DividerModule,
     FormsModule,
     GalleriaModule,
+    InputTextModule,
     CarouselModule,
+    ToolbarModule,
     RadioButtonModule,
     TagModule,
     CardModule,
