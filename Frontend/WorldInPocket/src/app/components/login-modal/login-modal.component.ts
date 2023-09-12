@@ -15,6 +15,7 @@ export class LoginModalComponent {
   @Output() loginClicked = new EventEmitter<any>();
 
   login() {
+    console.log('Funzione login chiamata');
     // Invia i dati di accesso al componente padre
     this.loginClicked.emit(this.loginData);
   }
