@@ -71,29 +71,12 @@
     </div>
   </div>
 </div> -->
+<form #fG="ngForm" (ngSubmit)="login(fG)">
+  <label for="username">Username</label>
+  <input ngModel name="username" pInputText id="username" type="text" />
 
-<div class="card">
-    <div class="grid">
-        <div class="col-5 flex align-items-center justify-content-center">
-            <div class="p-fluid">
-                <div class="field">
-                    <label for="username">Username</label>
-                    <input pInputText id="username" type="text" />
-                </div>
-                <div class="field">
-                    <label for="password">Password</label>
-                    <input pInputText id="password" type="password" />
-                </div>
-                <p-button label="Login" [routerLink]="['/dashboard']"></p-button>
-            </div>
-        </div>
-        <div class="col-2">
-            <p-divider layout="vertical">
-                <b>OR</b>
-            </p-divider>
-        </div>
-        <div class="col-5 flex align-items-center justify-content-center">
-            <p-button label="Sign Up" icon="pi pi-user-plus" styleClass="p-button-success"></p-button>
-        </div>
-    </div>
-</div>
+  <label for="password">Password</label>
+  <input ngModel name="password" pInputText id="password" type="password" />
+
+  <p-button type="submit" label="Login"></p-button>
+</form>

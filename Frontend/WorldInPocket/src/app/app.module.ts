@@ -31,6 +31,8 @@ import { HomeComponent } from './components/home/home.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,11 @@ import { RegisterModalComponent } from './components/register-modal/register-mod
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
-    MessageService
+    MessageService,
+    { provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
