@@ -35,7 +35,7 @@ public class AuthRunner implements ApplicationRunner {
 		System.out.println("Run...");
 		
 		// Da lanciare solo la prima volta
-		setRoleDefault();
+		//setRoleDefault();
 		
 	}
 	

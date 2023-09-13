@@ -44,8 +44,6 @@ public class ImageController {
 	
     @GetMapping ("/all")
     public List<ImageEntity> getAllImages() {
-        // Recupera le informazioni delle immagini dal tuo database o da una risorsa esterna
-        // Crea oggetti ImageDto con i dati dell'immagine e restituiscili come JSON
         List<ImageEntity> images = imageService.getAllImages();
         return images;
     }

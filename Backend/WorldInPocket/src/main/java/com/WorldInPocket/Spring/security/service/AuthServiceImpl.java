@@ -1,6 +1,7 @@
 package com.WorldInPocket.Spring.security.service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.http.HttpStatus;
@@ -99,10 +100,56 @@ public class AuthServiceImpl implements AuthService {
         return "User registered successfully!.";
     }
     
+//    @Override
+//    public String register(RegisterDto registerDto) {
+//    	// add check for username exists in database
+//      if(userRepository.existsByUsername(registerDto.getUsername())){
+//          throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username is already exists!.");
+//      }
+//
+//      // add check for email exists in database
+//      if(userRepository.existsByEmail(registerDto.getEmail())){
+//          throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email is already exists!.");
+//      }
+//
+//      User user = new User();
+//      user.setName(registerDto.getName());
+//      user.setUsername(registerDto.getUsername());
+//      user.setEmail(registerDto.getEmail());
+//      user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+//      
+//        Set<Role> roles = new HashSet<>();
+//        
+//        if (registerDto.getRoles() != null) {
+//            registerDto.getRoles().forEach(role -> {
+//                Optional<Role> optionalRole = roleRepository.findByRoleName(getRole(role));
+//                if (optionalRole.isPresent()) {
+//                    Role userRole = optionalRole.get();
+//                    roles.add(userRole);
+//                } else {
+//                    throw new MyAPIException(HttpStatus.BAD_REQUEST, "Role not found: " + role);
+//                }
+//            });
+//        } else {
+//            Role userRole = roleRepository.findByRoleName(ERole.ROLE_USER).orElseThrow(() ->
+//                new MyAPIException(HttpStatus.BAD_REQUEST, "Default role not found")
+//            );
+//            roles.add(userRole);
+//        }
+//        
+//        // Altri passaggi della registrazione...
+//
+//        return "User registered successfully!.";
+//    }
+
+    
+    
     public ERole getRole(String role) {
     	if(role.equals("ADMIN")) return ERole.ROLE_ADMIN;
     	else if(role.equals("MODERATOR")) return ERole.ROLE_MODERATOR;
     	else return ERole.ROLE_USER;
     }
+    
+    
     
 }
