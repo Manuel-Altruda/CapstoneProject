@@ -1,35 +1,94 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
-
-
+import { AuthService } from 'src/app/service/auth.service';
+import { Dialog } from 'primeng/dialog';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class NavbarComponent implements OnInit {
+
+  userLoggedIn: boolean = false;
   searchQuery: string = '';
   items: MenuItem[] | undefined;
   loading: boolean = false;
 
   load() {
-      this.loading = true;
+    this.loading = true;
 
-      setTimeout(() => {
-          this.loading = false
-      }, 2000);
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
   }
 
-  constructor(private dialogService: DialogService, public messageService: MessageService) {}
+  constructor(
+    private authSvc: AuthService,
+    private dialogService: DialogService,
+    public messageService: MessageService
+  ) {}
 
   ngOnInit() {
+    this.userLoggedIn = this.authSvc.isUserLoggedIn();
 
-}
+    this.items = [
+      {
+        label: 'Messages Center',
+        items: [
+          {
+            label: 'Messaggi',
+            icon: 'pi pi-refresh',
+            command: () => {
+              this.update();
+            },
+          },
+          {
+            label: 'notifiche',
+            icon: 'pi pi-times',
+            command: () => {
+              this.delete();
+            },
+          },
+        ],
+      },
+      {
+        label: 'Options',
+        items: [
+          {
+            label: 'Viaggi Prenotati',
+            icon: 'pi pi-external-link',
+            url: 'http://angular.io',
+          },
+          {
+            label: 'Router',
+            icon: 'pi pi-upload',
+            routerLink: '/fileupload',
+          },
+        ],
+      },
+    ];
+  }
+
+  update() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Data Updated',
+    });
+  }
+
+  delete() {
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Delete',
+      detail: 'Data Deleted',
+    });
+  }
 
   isLoginModalVisible = false;
   isRegisterModalVisible = false;
@@ -38,47 +97,45 @@ export class NavbarComponent implements OnInit {
   showLogin: boolean = true;
   showRegister: boolean = false;
 
-openLoginModal() {
-  this.visible = true;
-  this.showLogin = true;
-  this.showRegister = false;
+  openLoginModal() {
+    this.visible = true;
+    this.showLogin = true;
+    this.showRegister = false;
 
-  this.dialogService.open(LoginModalComponent, {
-    header: 'Accedi', // Titolo del modale di login
-    width: '40%',   // Larghezza del modale
-    contentStyle: {
-      'max-height': '500px', // Altezza massima del contenuto
-      overflow: 'auto'       // Scroll se il contenuto è troppo grande
+    this.dialogService.open(LoginModalComponent, {
+      header: 'Accedi', // Titolo del modale di login
+      width: '40%', // Larghezza del modale
+      contentStyle: {
+        'max-height': '500px', // Altezza massima del contenuto
+        overflow: 'auto', // Scroll se il contenuto è troppo grande
+      },
+    });
+    this.isLoginModalVisible = true;
+  }
+  openRegisterModal() {
+    this.visible = true;
+
+    this.dialogService.open(RegisterModalComponent, {
+      header: 'Registrati',
+      width: '40%',
+      contentStyle: {
+        'max-height': '500px',
+        overflow: 'auto',
+      },
+    });
+    this.isRegisterModalVisible = true;
+  }
+
+  ref: DynamicDialogRef | undefined;
+
+  ngOnDestroy() {
+    if (this.ref) {
+      this.ref.close();
     }
-  });
-  this.isLoginModalVisible = true;
+  }
+
+  logout() {
+    this.authSvc.logout();
+    this.userLoggedIn = false;
+  }
 }
-
-openRegisterModal() {
-  this.visible = true;
-
-  this.dialogService.open(RegisterModalComponent, {
-    header: 'Registrati',
-    width: '40%',
-    contentStyle: {
-      'max-height': '500px',
-      overflow: 'auto'
-    }
-  });
-  this.isRegisterModalVisible = true;
-}
-
-
-    ref: DynamicDialogRef | undefined;
-
-
-    ngOnDestroy() {
-        if (this.ref) {
-            this.ref.close();
-        }
-    }
-
-}
-
-
-

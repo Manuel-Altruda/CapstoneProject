@@ -1,31 +1,10 @@
 
 <!--
 
-
-
-
-
-
-
-<h1 data-heading="Hotel">Hotel</h1>
-
-<div class="card-container">
-  <div class="card flex justify-content-center" *ngFor="let hotel of hotels" #hotelCard>
-    <p-card [header]="hotel.name" [style]="{ width: '360px' }">
-      <ng-template pTemplate="header">
-        <img alt="Card" [src]="hotel.thumbNailUrl" class="card-image" />
-      </ng-template>
-      <p>
-        {{ hotel.shortDescription }}
-      </p>
-      <ng-template pTemplate="footer">
-        <p-button label="Save" icon="pi pi-check"></p-button>
-        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-      </ng-template>
-    </p-card>
-  </div>
-</div>
 -->
+
+
+
 <div class="card-container">
   <div class="card flex justify-content-center" *ngFor="let hotel of hotels" #hotelCard>
     <p-card [header]="hotel.name" [style]="{ width: '360px' }">
@@ -40,9 +19,9 @@
         {{ hotel.shortDescription }}
       </p>
       <ng-template pTemplate="footer">
-        <p-button label="Save" icon="pi pi-check"></p-button>
-        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+        <p-button [routerLink]="['/hotel', hotel.id]" label="Vedi di più" icon="pi pi-check" (click) ="showHotelDetails(hotel)"></p-button>
       </ng-template>
     </p-card>
   </div>
 </div>
+

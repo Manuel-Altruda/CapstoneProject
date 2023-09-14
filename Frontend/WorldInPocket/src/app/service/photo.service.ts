@@ -15,7 +15,7 @@ export class PhotoService {
     });
   }
 
-  private apiUrl = '/api/images'; // Sostituisci con l'URL effettivo del tuo backend
+  private apiUrl = '/api/images';
 
   constructor(private http: HttpClient) {}
 

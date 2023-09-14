@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
+import { MenuModule } from 'primeng/menu';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,8 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     RegisterComponent,
     LoginModalComponent,
     RegisterModalComponent,
+    DashboardComponent,
+    HotelDetailsComponent
 
   ],
   imports: [
@@ -55,6 +60,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     CarouselModule,
     ToolbarModule,
     RadioButtonModule,
+    MenuModule,
     TagModule,
     CardModule,
     PasswordModule,

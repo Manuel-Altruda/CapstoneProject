@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { HotelService } from './../../service/hotel.service';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/service/photo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +11,15 @@ import { PhotoService } from 'src/app/service/photo.service';
   providers: [PhotoService]
 })
 export class HomeComponent implements OnInit{
+  selectedHotel: any;
   images: any[] | undefined;
   flights: any[] = [];
   hotels: any[] = [];
   valueChange: EventEmitter<any> = new EventEmitter<any>();
   responsiveOptions: any[] | undefined;
+  hotelId: any;
 
-  constructor(private hotelService: HotelService, private http: HttpClient) {}
+  constructor(private hotelService: HotelService, private http: HttpClient, private router: Router) {}
 
   ngOnInit() : void {
 
@@ -46,6 +49,11 @@ export class HomeComponent implements OnInit{
 
   getThumbnailUrl(thumbnail: string): string {
     return `assets/thumbnails/${thumbnail}`;
+  }
+
+  showHotelDetails(hotel: string) {
+    this.selectedHotel = hotel;
+    this.router.navigate(['/hotel', this.hotelId]);
   }
 
 }

@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class LoginModalComponent {
   fG!:FormGroup;
+  userLoggedIn = false;
   errorMessage: string = '';
   loginData : any = {};
   ngOnInit(): void {
@@ -21,13 +22,16 @@ export class LoginModalComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  @Output() loginSuccess = new EventEmitter<void>();
+
   loginUser(fG : NgForm) {
     console.log(fG.value);
     this.authService.login(fG.value).subscribe(
       (response: any) => {
         console.log('Risposta dal server:', response);
         this.router.navigate(['/dashboard']);
-
+        this.loginSuccess.emit();
+        this.userLoggedIn = true;
       },
       (error: any) => {
         console.error('Errore durante il login:', error);
@@ -37,6 +41,7 @@ export class LoginModalComponent {
   }
 
   @Output() loginClicked = new EventEmitter<any>();
+
 
 
   login(fG : NgForm) {

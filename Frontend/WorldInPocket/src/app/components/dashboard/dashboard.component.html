@@ -1,3 +1,20 @@
-<p>
-  dashboard works!
-</p>
+<div class="card-container">
+  <div class="card flex justify-content-center" *ngFor="let hotel of hotels" #hotelCard>
+    <p-card [header]="hotel.name" [style]="{ width: '360px' }">
+      <ng-template pTemplate="header">
+        <p-carousel [value]="hotel.images" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+          <ng-template let-image pTemplate="item">
+            <img [style]="{ 'margin-top': '.6em' }" alt="Card" [src]="image" class="card-image" />
+          </ng-template>
+        </p-carousel>
+      </ng-template>
+      <p>
+        {{ hotel.shortDescription }}
+      </p>
+      <ng-template pTemplate="footer">
+        <p-button label="Vedi di più" icon="pi pi-check" (click) ="showHotelDetails(hotel)"></p-button>
+
+      </ng-template>
+    </p-card>
+  </div>
+</div>

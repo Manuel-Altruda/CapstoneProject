@@ -1,48 +1,10 @@
-<!-- <div class="custom-navbar">
-  <p-menubar [model]="items">
-    <ng-template pTemplate="start">
 
-      <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="60" class="mr-2"/>
-      <div class="bar">
-        <div class="location">
-          <p>Location</p>
-          <input type="text" placeholder="Where are you going?">
-        </div>
-        <div class="check-in">
-              <p>Check in</p>
-          <input type="text" placeholder="Add dates">
-        </div>
-        <div class="check-out">
-              <p>Check out</p>
-          <input type="text" placeholder="Add dates">
-        </div>
-        <div class="guests">
-              <p>Guests</p>
-          <input type="text" placeholder="Add guests">
-          <span><i class="lni lni-search-alt"></i></span>
-        </div>
-      </div>
-    </ng-template>
-
-    <ng-template pTemplate="end">
-
-      <p-button class="custom-button" label="Login" label="Accedi" styleClass="p-button-secondary" (click)="openLoginModal()"></p-button>
-      <p-button class="custom-button" label="Register" label="Registrati" styleClass="p-button-secondary" (click)="openRegisterModal()"></p-button>
-
-    </ng-template>
-  </p-menubar>
-</div>
-
-
-
-<button label="Registrati" (click)="openRegisterModal()">Registrati</button>-->
-
-<nav class="navbar" style="
+<!-- <nav class="navbar" style="
 display: flex;
 justify-content: space-between;
 ">
   <div class="navbar-logo">
-      <img src="/images/logo.png">
+      <img src="">
   </div>
   <div class="navbar-search">
       <div class="bar">
@@ -68,6 +30,58 @@ justify-content: space-between;
   <ul class="navbar-links">
     <p-button class="custom-button" label="Login" label="Accedi" styleClass="p-button-secondary" (click)="openLoginModal()"></p-button>
     <p-button class="custom-button" label="Register" label="Registrati" styleClass="p-button-secondary" (click)="openRegisterModal()"></p-button>
+  </ul>
+</nav>
+
+-->
+
+<nav class="navbar" style="display: flex; justify-content: space-between;">
+  <div class="navbar-logo">
+    <img style="margin-left: 3rem" src="data:image/png;base64,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">
+  </div>
+  <div class="navbar-search">
+    <div class="bar">
+      <div class="location">
+        <p>Location</p>
+        <input type="text" placeholder="Where are you going?">
+      </div>
+      <div class="check-in">
+        <p>Check in</p>
+        <input type="text" placeholder="Add dates">
+      </div>
+      <div class="check-out">
+        <p>Check out</p>
+        <input type="text" placeholder="Add dates">
+      </div>
+      <div class="guests">
+        <p>Guests</p>
+        <input type="text" placeholder="Add guests" class="w-full">
+        <span><i class="lni lni-search-alt"></i></span>
+      </div>
+    </div>
+  </div>
+  <ul class=" navbar-links">
+
+    <li *ngIf="userLoggedIn" class="listDot dropdown">
+      <a href="#" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="lni lni-user"></i>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <i class="pi pi-user" style="font-size: 1.5rem; margin-right: 7px;"></i>
+
+        <p-toast></p-toast>
+        <p-menu #menu [model]="items" [popup]="true"></p-menu>
+        <button style="background-color: beige; color: rgb(94 94 241); margin-right: 1rem" pButton type="button" (click)="menu.toggle($event)" >Profilo</button>
+        <button style="background-color: beige; color: rgb(94 94 241); margin-right: 1rem" pButton type="button" (click)="logout()">Logout</button>
+      </div>
+    </li>
+    <li *ngIf="!userLoggedIn" class="listDot">
+      <p-button class="custom-button" label="Login" label="Accedi" styleClass="p-button-secondary" (click)="openLoginModal()"></p-button>
+    </li>
+    <li *ngIf="!userLoggedIn">
+      <p-button class="custom-button" label="Register" label="Registrati" styleClass="p-button-secondary" (click)="openRegisterModal()"></p-button>
+    </li>
+
   </ul>
 </nav>
 

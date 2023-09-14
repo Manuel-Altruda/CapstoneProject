@@ -1,0 +1,15 @@
+ <!--<div *ngIf="selectedHotel">
+  <h1>{{ selectedHotel.name }}</h1>
+  <p>{{ selectedHotel.description }}</p>
+  <img [src]="selectedHotel.image" alt="Hotel Image" />
+
+  Altre informazioni sull'hotel
+</div>-->
+
+<h2>Dettagli dell'hotel</h2>
+<div *ngIf="hotelId">
+  <h3>{{ selectedHotel.name }}</h3>
+  <p>{{ selectedHotel.shortDescription }}</p>
+</div>
+
+

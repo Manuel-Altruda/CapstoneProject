@@ -6,13 +6,15 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LogoutComponent } from './components/auth/logout/logout.component';
 import { AuthGuard } from './auth.guard';
+import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  {path: 'logout', component: LogoutComponent}
+  { path: '', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'hotel', component: HotelDetailsComponent },
+  { path: 'logout', component: LogoutComponent }
 
 ];
 
