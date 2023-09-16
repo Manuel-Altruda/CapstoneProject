@@ -16,6 +16,9 @@ public class Alloggio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private Long alloggioId;
+    private Long utenteId;
     private String nome;
     private String indirizzo;
     private String destinazione;
@@ -104,5 +107,21 @@ public class Alloggio {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Long getAlloggioId() {
+		return alloggioId;
+	}
+
+	public void setAlloggioId(Long alloggioId) {
+		this.alloggioId = alloggioId;
+	}
+
+	public Long getUtenteId() {
+		return utenteId;
+	}
+
+	public void setUtenteId(Long utenteId) {
+		this.utenteId = utenteId;
 	}
 }

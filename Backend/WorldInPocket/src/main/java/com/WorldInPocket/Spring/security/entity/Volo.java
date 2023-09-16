@@ -13,6 +13,7 @@ public class Volo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     private String compagniaAerea;
+    private String numeroVolo;
     private String destinazione;
     private String descrizione;
     private Date dataPartenza;
@@ -82,6 +83,14 @@ public class Volo {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public String getNumeroVolo() {
+		return numeroVolo;
+	}
+
+	public void setNumeroVolo(String numeroVolo) {
+		this.numeroVolo = numeroVolo;
 	}
 
 	

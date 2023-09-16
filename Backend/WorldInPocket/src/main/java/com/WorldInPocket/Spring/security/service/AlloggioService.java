@@ -50,10 +50,9 @@ public class AlloggioService {
         if (alloggioEsistente != null) {
             alloggioEsistente.setNome(nuovaAlloggio.getNome());
             alloggioEsistente.setNome(nuovaAlloggio.getNome());
-            // Aggiorna altri campi se necessario
             return alloggioRepository.save(alloggioEsistente);
         }
-        return null; // Restituisci null se l'alloggio non esiste
+        return null;
     }
 
     public boolean deleteAlloggio(Long id) {
@@ -61,6 +60,6 @@ public class AlloggioService {
             alloggioRepository.deleteById(id);
             return true;
         }
-        return false; // Restituisci false se l'alloggio non esiste o non può essere eliminato
+        return false; 
     }
 }
