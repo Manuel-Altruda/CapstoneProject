@@ -28,7 +28,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
@@ -36,18 +35,30 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
+import { HomeTravelPackagesComponent } from './components/home-section-packages/home-section-packages.component';
+import { HomeTravelTestimonialsComponent } from './components/home-section-testimonials/home-section-testimonials.component';
+import { HomeContactComponent } from './components/home-contact/home-contact.component';
+import { HomeFooterComponent } from './components/home-footer/home-footer.component';
+import { HomeSectionComponent } from './components/home-section/home-section.component';
+import { HomeHeaderComponent } from './components/home-header/home-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeSectionComponent,
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
     LoginModalComponent,
     RegisterModalComponent,
     DashboardComponent,
-    HotelDetailsComponent
+    HotelDetailsComponent,
+    HomeTravelPackagesComponent,
+    HomeHeaderComponent,
+    HomeTravelPackagesComponent,
+    HomeTravelTestimonialsComponent,
+    HomeContactComponent,
+    HomeFooterComponent
 
   ],
   imports: [

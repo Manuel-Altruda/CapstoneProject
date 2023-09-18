@@ -18,4 +18,84 @@
   object-fit: cover;
 }
 
+#demo {
+  width: -webkit-fill-available;
+}
+#icons path {
 
+  fill: rgb(84, 79, 90);
+}
+
+text {
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  fill: rgba(0,0,0,0.5);
+}
+
+#icons g {
+ cursor: pointer;
+
+}
+
+#icons rect {
+  fill: transparent;
+}
+
+.goop {
+  fill: #1C4861;
+  fill: #5C51A6;
+  fill: #382B8C;
+}
+
+#main {
+  stroke: #00688e;
+  stroke: none;
+  stroke-width: 1px;
+}
+
+
+
+h1, h2,
+p {
+  margin: 0;
+
+}
+
+a {
+  background: #5cceee;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+a:hover {
+  background: white;
+    color: #5cceee;
+}
+h1, h2,
+p {
+  margin: 0;
+}
+h2 {
+  font-weight: 400;
+}
+h2 span {
+  font-weight: 700;
+  color: #5cceee;
+}
+p span {
+  font-weight: 700;
+  color: #5cceee;
+}
+
+.branding {
+
+  display: flex;
+  flex-direction: column;
+ align-items: center;
+/*   position: absolute;
+  bottom: 1rem; */
+}

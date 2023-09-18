@@ -9,22 +9,26 @@ import { HotelService } from 'src/app/service/hotel.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  selectedHotel: any;
+  hotelId: string | any;
+  selectedHotel: any[] = [];
   images: any[] | undefined;
   flights: any[] = [];
   hotels: any[] = [];
   valueChange: EventEmitter<any> = new EventEmitter<any>();
   responsiveOptions: any[] | undefined;
 
-  constructor(private hotelService: HotelService, private http: HttpClient, private router: Router) {}
+
+  constructor(private hotelService: HotelService, private router: Router, private http: HttpClient) {}
 
   ngOnInit() : void {
 
-    this.http.get<any>('./assets/hotel.json').subscribe(data => {
-
-      this.hotels = data.hotels;
+    this.hotelService.getAllHotels().subscribe((data: any[]) => {
+      this.hotels = data;
     });
+
+    /* this.hotelService.getHotelById(this.hotelId).subscribe((data: any[]) => {
+      this.hotels = data;
+    }); */
 
     this.responsiveOptions = [
       {
@@ -49,9 +53,14 @@ export class DashboardComponent implements OnInit {
     return `assets/thumbnails/${thumbnail}`;
   }
 
-  showHotelDetails(hotelId: string) {
-    this.router.navigate(['/hotel', hotelId]);
+  goToHotelDetails(hotelId: string) {
+    this.router.navigate(['/hotel-details', hotelId]);
   }
+
+  viewHotelDetails(hotelId: string): void {
+    this.router.navigate(['/hotel-details', hotelId]);
+  }
+
 
 
 }

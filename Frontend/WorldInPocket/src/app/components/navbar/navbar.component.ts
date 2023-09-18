@@ -1,3 +1,4 @@
+import { IUser } from './../../interfaces/Iuser';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -14,10 +15,11 @@ import { Dialog } from 'primeng/dialog';
 })
 export class NavbarComponent implements OnInit {
 
-  userLoggedIn: boolean = false;
-  searchQuery: string = '';
-  items: MenuItem[] | undefined;
-  loading: boolean = false;
+  user : IUser | null = null;
+  userLoggedIn : boolean = false;
+  searchQuery : string = '';
+  items : MenuItem[] | undefined;
+  loading : boolean = false;
 
   load() {
     this.loading = true;
@@ -31,7 +33,7 @@ export class NavbarComponent implements OnInit {
     private authSvc: AuthService,
     private dialogService: DialogService,
     public messageService: MessageService
-  ) {}
+  ) { this.authSvc.isUserLogged.subscribe( user => this.user = user ) }
 
   ngOnInit() {
     this.userLoggedIn = this.authSvc.isUserLoggedIn();

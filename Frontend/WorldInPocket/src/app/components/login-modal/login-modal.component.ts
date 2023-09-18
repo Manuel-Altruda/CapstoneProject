@@ -25,10 +25,9 @@ export class LoginModalComponent {
   @Output() loginSuccess = new EventEmitter<void>();
 
   loginUser(fG : NgForm) {
-    console.log(fG.value);
+
     this.authService.login(fG.value).subscribe(
       (response: any) => {
-        console.log('Risposta dal server:', response);
         this.router.navigate(['/dashboard']);
         this.loginSuccess.emit();
         this.userLoggedIn = true;

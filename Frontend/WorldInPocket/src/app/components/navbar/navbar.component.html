@@ -62,7 +62,7 @@ justify-content: space-between;
   </div>
   <ul class=" navbar-links">
 
-    <li *ngIf="userLoggedIn" class="listDot dropdown">
+    <li *ngIf="user" class="listDot dropdown">
       <a href="#" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="lni lni-user"></i>
       </a>
@@ -75,10 +75,10 @@ justify-content: space-between;
         <button style="background-color: beige; color: rgb(94 94 241); margin-right: 1rem" pButton type="button" (click)="logout()">Logout</button>
       </div>
     </li>
-    <li *ngIf="!userLoggedIn" class="listDot">
+    <li *ngIf="!user" class="listDot">
       <p-button class="custom-button" label="Login" label="Accedi" styleClass="p-button-secondary" (click)="openLoginModal()"></p-button>
     </li>
-    <li *ngIf="!userLoggedIn">
+    <li *ngIf="!user">
       <p-button class="custom-button" label="Register" label="Registrati" styleClass="p-button-secondary" (click)="openRegisterModal()"></p-button>
     </li>
 
