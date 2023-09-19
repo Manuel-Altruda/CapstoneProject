@@ -1,29 +1,48 @@
- <!--<div *ngIf="selectedHotel">
-  <h1>{{ selectedHotel.name }}</h1>
-  <p>{{ selectedHotel.description }}</p>
-  <img [src]="selectedHotel.image" alt="Hotel Image" />
-
-  Altre informazioni sull'hotel
+<div class="reservation-container">
+<div class="hotel-card" *ngIf="selectedHotel">
+  <div class="hotel-card-inner">
+    <div class="hotel-image">
+      <img [src]="selectedImage || selectedHotel.images[0]" alt="{{ selectedHotel.name }} Image">
+    </div>
+    <div class="hotel-details">
+      <h2>{{ selectedHotel.name }}</h2>
+      <p>{{ selectedHotel.shortDescription }}</p>
+      <p>Indirizzo: {{ selectedHotel.address1 }}</p>
+      <p>Stelle: {{ selectedHotel.highRate }}</p>
+    </div>
+    <div class="image-gallery">
+      <h3>Galleria</h3>
+      <div class="image-thumbnails">
+        <img *ngFor="let image of selectedHotel.images; let i = index"
+             [src]="image"
+             alt="Thumbnail"
+             (click)="selectImage(image)"
+             [class.selected]="selectedImage === image"
+        >
+      </div>
+    </div>
+  </div>
 </div>
--->
-
-
-<div *ngIf="selectedHotel">
-  <h2>{{ selectedHotel.name }}</h2>
-  <img [src]="selectedHotel.images" alt="{{ selectedHotel.name }} Image">
-  <p>{{ selectedHotel.shortDescription }}</p>
-  <p>Indirizzo: {{ selectedHotel.address1 }}</p>
-  <p>Stelle: {{ selectedHotel.highRate }}</p>
+<div class="reservation-card">
+  <div class="reservation-card-inner">
+    <h2>Fai la tua prenotazione</h2>
+    <div class="reservation-form">
+      <!-- Modulo di prenotazione -->
+      <div class="form-group">
+        <label for="checkInDate">Data di Check-in</label>
+        <input type="date" id="checkInDate" name="checkInDate" [(ngModel)]="checkInDate">
+      </div>
+      <div class="form-group">
+        <label for="checkOutDate">Data di Check-out</label>
+        <input type="date" id="checkOutDate" name="checkOutDate" [(ngModel)]="checkOutDate">
+      </div>
+      <!-- Altri campi del modulo di prenotazione -->
+      <!-- ... -->
+    </div>
+    <div class="reservation-button">
+      <!-- Pulsante per avviare il processo di prenotazione -->
+      <button (click)="avviaPrenotazione()">Prenota ora</button>
+    </div>
+  </div>
 </div>
-
-<div *ngIf="!selectedHotel">
-  <p>Hotel non trovato.</p>
 </div>
-
-
-
-
-
-
-
-

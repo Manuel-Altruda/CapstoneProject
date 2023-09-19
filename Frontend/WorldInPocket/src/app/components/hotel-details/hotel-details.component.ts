@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HotelService } from 'src/app/service/hotel.service';
 import { iHotel } from '../../interfaces/iHotel';
 import { HttpClient } from '@angular/common/http';
+import { Galleria } from 'primeng/galleria';
 
 @Component({
   selector: 'app-hotel-details',
@@ -13,14 +14,37 @@ export class HotelDetailsComponent implements OnInit {
   selectedHotel : any;
   isLoading = true;
   isError = false;
+  selectedImage: string | null = null;
+  checkInDate: string = ''; // Variabile per la data di check-in
+  checkOutDate: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private hotelService: HotelService,
+    private router: Router
   ) {}
 
 
+
+  @ViewChild('galleria')
+  galleria!: Galleria;
+
+  responsiveOptions: any[] = [
+      {
+          breakpoint: '1024px',
+          numVisible: 5
+      },
+      {
+          breakpoint: '768px',
+          numVisible: 3
+      },
+      {
+          breakpoint: '560px',
+          numVisible: 1
+      }
+  ];
   ngOnInit(): void {
+
     this.route.paramMap.subscribe(params => {
       const hotelId = params.get('id');
       if (hotelId) {
@@ -32,13 +56,31 @@ export class HotelDetailsComponent implements OnInit {
     });
   }
 
+  selectImage(imageUrl: string) {
+    this.selectedImage = imageUrl;
+  }
+  avviaPrenotazione() {
+    if (!this.selectedHotel || !this.checkInDate || !this.checkOutDate) {
+      // Gestisci il caso in cui mancano dati essenziali per la prenotazione
+      console.error('Dati mancanti per la prenotazione');
+      return;
+    }
+
+    // Reindirizza l'utente alla pagina di prenotazione con i parametri selezionati
+    this.router.navigate(['/prenotazione-hotel'], {
+      queryParams: {
+        hotelId: this.selectedHotel.id,
+        checkIn: this.checkInDate,
+        checkOut: this.checkOutDate
+      }
+    });
+  }
 
 
 
 
 
-
-
+}
 
 
 
@@ -92,5 +134,5 @@ export class HotelDetailsComponent implements OnInit {
       }
     );
   }*/
-}
+
 

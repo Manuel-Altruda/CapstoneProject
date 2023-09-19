@@ -41,6 +41,7 @@ import { HomeContactComponent } from './components/home-contact/home-contact.com
 import { HomeFooterComponent } from './components/home-footer/home-footer.component';
 import { HomeSectionComponent } from './components/home-section/home-section.component';
 import { HomeHeaderComponent } from './components/home-header/home-header.component';
+import { PrenotazioneHotelComponent } from './components/prenotazione-hotel/prenotazione-hotel.component';
 
 @NgModule({
   declarations: [
@@ -53,12 +54,14 @@ import { HomeHeaderComponent } from './components/home-header/home-header.compon
     RegisterModalComponent,
     DashboardComponent,
     HotelDetailsComponent,
+    PrenotazioneHotelComponent,
     HomeTravelPackagesComponent,
     HomeHeaderComponent,
     HomeTravelPackagesComponent,
     HomeTravelTestimonialsComponent,
     HomeContactComponent,
-    HomeFooterComponent
+    HomeFooterComponent,
+    PrenotazioneHotelComponent
 
   ],
   imports: [

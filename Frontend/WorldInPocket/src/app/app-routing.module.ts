@@ -8,6 +8,7 @@ import { AuthGuard } from './auth.guard';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 import { AppComponent } from './app.component';
 import { HomeHeaderComponent } from './components/home-header/home-header.component';
+import { PrenotazioneHotelComponent } from './components/prenotazione-hotel/prenotazione-hotel.component';
 
 const routes: Routes = [
 
@@ -16,7 +17,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'hotel-details/:id', component: HotelDetailsComponent },
+  { path: 'prenotazione-hotel', component: PrenotazioneHotelComponent},
   { path: 'logout', component: LogoutComponent },
+
 ];
 
 @NgModule({

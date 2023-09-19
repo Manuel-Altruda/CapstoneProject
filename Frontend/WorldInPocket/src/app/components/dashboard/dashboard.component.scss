@@ -7,6 +7,11 @@
   margin-right: 10px;
 }
 
+.iconeNavbar {
+  margin-top: -50px;
+  margin-bottom: -12px;
+}
+
 .card {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -99,3 +104,66 @@ p span {
 /*   position: absolute;
   bottom: 1rem; */
 }
+
+
+
+.inner-div {
+  flex: 1;
+  background-color: #ffffff;
+  color: #484848;
+  font-weight: 600;
+}
+.inner-div:last-child {
+  border-bottom: none;
+}
+
+.icon-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin: 0 24px;
+  padding: 0;
+  list-style: none;
+  gap: 24px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.icon-container::-webkit-scrollbar {
+  display: none;
+}
+.icon-item {
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.icon-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 calc((100% - 48px) / 5);
+  margin: 12px 0 10px;
+  padding: 4px 0;
+}
+.icon-item i {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+.icon-item span {
+  font-size: 12px;
+}
+.icon-item a {
+  color: #484848;
+  text-decoration: none;
+	padding-bottom: 8px;
+	margin-bottom: 0;
+}
+.icon-item.active a,
+.icon-item a:focus {
+  color: #FF5A5F;
+  border-bottom: 2px solid #FF5A5F;
+}
+.icon-item a:hover {
+  color: #767676;
+  border-bottom: 2px solid #FF5A5F;
+}
+
