@@ -34,14 +34,17 @@ import { RegisterModalComponent } from './components/register-modal/register-mod
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 import { HomeTravelPackagesComponent } from './components/home-section-packages/home-section-packages.component';
 import { HomeTravelTestimonialsComponent } from './components/home-section-testimonials/home-section-testimonials.component';
 import { HomeContactComponent } from './components/home-contact/home-contact.component';
 import { HomeFooterComponent } from './components/home-footer/home-footer.component';
 import { HomeSectionComponent } from './components/home-section/home-section.component';
+
 import { HomeHeaderComponent } from './components/home-header/home-header.component';
 import { PrenotazioneHotelComponent } from './components/prenotazione-hotel/prenotazione-hotel.component';
+import { PagamentoComponent } from './components/pagamento/pagamento.component';
 
 @NgModule({
   declarations: [
@@ -61,21 +64,23 @@ import { PrenotazioneHotelComponent } from './components/prenotazione-hotel/pren
     HomeTravelTestimonialsComponent,
     HomeContactComponent,
     HomeFooterComponent,
-    PrenotazioneHotelComponent
+    PrenotazioneHotelComponent,
+    PagamentoComponent
 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     DividerModule,
-    FormsModule,
     GalleriaModule,
     InputTextModule,
     CarouselModule,
+    ConfirmDialogModule,
     ToolbarModule,
     RadioButtonModule,
     MenuModule,
     TagModule,
+    FormsModule,
     CardModule,
     PasswordModule,
     MessagesModule,

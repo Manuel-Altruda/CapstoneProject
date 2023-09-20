@@ -17,6 +17,7 @@
       "hotelId" : 1257278,
       "hotelInDestination" : true,
       "hotelRating" : 4,
+      "price" : 790,
       "location" : {
         "latitude" : 47.60985,
         "longitude" : -122.33475
@@ -58,6 +59,7 @@
       "hotelId" : 164122,
       "hotelInDestination" : true,
       "hotelRating" : 4,
+      "price" : 890,
       "location" : {
         "latitude" : 47.61309,
         "longitude" : -122.33788
@@ -99,6 +101,7 @@
       "hotelId" : 164116,
       "hotelInDestination" : true,
       "hotelRating" : 4,
+      "price" : 750,
       "location" : {
         "latitude" : 47.61017,
         "longitude" : -122.33357
@@ -140,6 +143,7 @@
       "hotelId" : 127092,
       "hotelInDestination" : true,
       "hotelRating" : 4,
+      "price" : 690,
       "location" : {
         "latitude" : 47.61252,
         "longitude" : -122.35013
@@ -181,6 +185,7 @@
       "hotelId" : 113426,
       "hotelInDestination" : true,
       "hotelRating" : 3.5,
+      "price" : 880,
       "location" : {
         "latitude" : 47.61381,
         "longitude" : -122.33686
@@ -222,6 +227,7 @@
       "hotelId" : 132138,
       "hotelInDestination" : true,
       "hotelRating" : 4,
+      "price" : 1790,
       "location" : {
         "latitude" : 47.60682,
         "longitude" : -122.33358
@@ -263,6 +269,7 @@
       "hotelId" : 191964,
       "hotelInDestination" : true,
       "hotelRating" : 3.5,
+      "price" : 590,
       "location" : {
         "latitude" : 47.66143,
         "longitude" : -122.31429
@@ -301,6 +308,7 @@
       "countryCode" : "US",
       "deepLink" : "http://www.travelnow.com/templates/55505/hotels/213497/overview?lang=en&amp;currency=USD&amp;standardCheckin=null/null/null&amp;standardCheckout=null/null/null",
       "highRate" : 210,
+      "price" : 1800,
       "hotelId" : 213497,
       "hotelInDestination" : true,
       "hotelRating" : 4,
@@ -345,6 +353,7 @@
       "hotelId" : 119562,
       "hotelInDestination" : true,
       "hotelRating" : 4,
+      "price" : 890,
       "location" : {
         "latitude" : 47.61318,
         "longitude" : -122.34009
@@ -386,6 +395,7 @@
       "hotelId" : 342070,
       "hotelInDestination" : true,
       "hotelRating" : 3,
+      "price" : 990,
       "location" : {
         "latitude" : 47.62561,
         "longitude" : -122.35129

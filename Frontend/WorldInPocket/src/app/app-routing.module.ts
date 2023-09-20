@@ -9,6 +9,7 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import { AppComponent } from './app.component';
 import { HomeHeaderComponent } from './components/home-header/home-header.component';
 import { PrenotazioneHotelComponent } from './components/prenotazione-hotel/prenotazione-hotel.component';
+import { PagamentoComponent } from './components/pagamento/pagamento.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'hotel-details/:id', component: HotelDetailsComponent },
   { path: 'prenotazione-hotel', component: PrenotazioneHotelComponent},
+  { path: 'pagamento', component: PagamentoComponent },
   { path: 'logout', component: LogoutComponent },
 
 ];
