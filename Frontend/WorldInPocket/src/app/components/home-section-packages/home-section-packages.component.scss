@@ -5,7 +5,7 @@
 }
 
 html {
-	font: normal 16px Raleway;
+	font-family: "Roboto", sans-serif;
 	color:#555;
 }
 
@@ -48,14 +48,15 @@ hr {
 }
 
 section h3.title {
+  font-family: "Roboto", sans-serif;
 	text-transform:capitalize;
-	font: bold 32px Raleway;
 	margin-bottom:30px;
 	text-align:center;
 }
 
 section p {
-	max-width:775px;
+  font-family: "Roboto", sans-serif;
+  max-width:775px;
 	line-height:2;
 	padding: 0 20px;
 	margin-bottom:30px;
@@ -73,6 +74,7 @@ section p {
 }
 
 .packages .grid li h4 {
+  font-family: "Roboto", sans-serif;
 	font-size:30px;
 	margin:20px;
 }

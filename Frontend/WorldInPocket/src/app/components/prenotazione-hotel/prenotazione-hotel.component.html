@@ -109,7 +109,7 @@
           <textarea name="comments" class="floatLabel" id="comments" formControlName="comments"></textarea>
           <label for="comments">Comments</label>
           </div>
-            <button (click)="navigateToPaymentPage()" [disabled]="!isFormValid()" class="col-1-4">Invia e procedi con il pagamento</button>
+            <button (click)="navigateToPaymentPage()" [disabled]="!prenotazioneForm.valid" class="col-1-4">Invia e procedi con il pagamento</button>
       </div>
   </div>
 </form>

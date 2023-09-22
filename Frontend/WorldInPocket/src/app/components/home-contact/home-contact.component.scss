@@ -1,5 +1,6 @@
 
 section {
+  font-family: "Roboto", sans-serif;
 	text-align:center;
   background-color:rgb(70, 179, 160);
 	display:flex;
@@ -27,13 +28,14 @@ hr {
 }
 
 section h3.title {
+  font-family: "Roboto", sans-serif;
 	text-transform:capitalize;
-	font: bold 32px Raleway;
 	margin-bottom:30px;
 	text-align:center;
 }
 
 section p {
+  font-family: "Roboto", sans-serif;
 	max-width:775px;
 	line-height:2;
 	padding: 0 20px;

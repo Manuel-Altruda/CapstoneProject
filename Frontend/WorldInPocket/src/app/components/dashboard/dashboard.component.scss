@@ -8,10 +8,28 @@
 }
 
 .iconeNavbar {
-  margin-top: -50px;
-  margin-bottom: -12px;
+  margin-top: 26px;
+  margin-bottom: 26px;
+  display: flex;
+  justify-content: center;
 }
 
+i {
+
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+.btn-hotel {
+  margin-right: 10rem;
+}
+
+.btn-volo {
+  margin-right: 10rem;
+}
 .card {
   margin-top: 20px;
   margin-bottom: 20px;

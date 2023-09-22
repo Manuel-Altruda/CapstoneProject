@@ -31,6 +31,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -45,12 +46,15 @@ import { HomeSectionComponent } from './components/home-section/home-section.com
 import { HomeHeaderComponent } from './components/home-header/home-header.component';
 import { PrenotazioneHotelComponent } from './components/prenotazione-hotel/prenotazione-hotel.component';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
+import { LogoutComponent } from './components/auth/logout/logout.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeSectionComponent,
     NavbarComponent,
+    LogoutComponent,
     LoginComponent,
     RegisterComponent,
     LoginModalComponent,
@@ -65,7 +69,7 @@ import { PagamentoComponent } from './components/pagamento/pagamento.component';
     HomeContactComponent,
     HomeFooterComponent,
     PrenotazioneHotelComponent,
-    PagamentoComponent
+    PagamentoComponent,
 
   ],
   imports: [
@@ -82,6 +86,7 @@ import { PagamentoComponent } from './components/pagamento/pagamento.component';
     TagModule,
     FormsModule,
     CardModule,
+    ProgressSpinnerModule,
     PasswordModule,
     MessagesModule,
     DynamicDialogModule,

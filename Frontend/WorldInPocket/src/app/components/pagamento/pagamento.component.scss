@@ -1,0 +1,155 @@
+$textColor: rgba(96, 125, 139, 1);
+$areaShadow: rgb(23, 68, 104);
+$submitColor:  rgba(76, 175, 80, .5);
+$submitColorHover: rgba(76, 175, 80, .7);
+$submitColorActive: rgba(76, 175, 80, 1);
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $textColor;
+}
+
+html, body {
+  height: 100%;
+}
+
+.page-content {
+  margin-top: 10%;
+
+  height: 100%;
+  text-align: center;
+
+  &:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+  }
+}
+
+.credit-form {
+  display: inline-block;
+  width: 545px;
+  padding: 10px;
+  text-align: initial;
+  vertical-align: middle;
+}
+
+.form-header {
+  margin-bottom: 20px;
+}
+
+.form-header__slogan {
+  margin: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 2em;
+}
+
+.payment-form {
+  width: 100%;
+  height: auto;
+}
+
+.payment-form__group {
+  float: left;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.payment-form__group-small {
+  width: 35%;
+}
+
+.payment-form__group-medium {
+  width: 65%;
+}
+
+.payment-form__group-normal {
+  width: 50%;
+}
+
+.payment-form__group-large {
+  width: 100%;
+}
+
+.payment-form__label {
+  width: 100%;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.payment-form__input {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  line-height: 1.8;
+  padding: 0 .5em;
+  width: 100%;
+
+  &:focus {
+    box-shadow: 0 0 0 1px $areaShadow;
+  }
+}
+
+.payment-form__select {
+  padding: 10px;
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 0 1px $areaShadow;
+  }
+}
+
+.payment-form__pic-container {
+  text-align: right;
+  line-height: 0;
+}
+
+.payment-form__pic {
+  position: relative;
+  bottom: -18px;
+  width: 78px;
+  height: 75px;
+}
+
+.payment-form__button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  background-color: $submitColor;
+  border: none;
+  outline: none;
+  box-shadow: 3px 5px $areaShadow;
+  position: relative;
+
+  &:hover {
+    background-color: $submitColorHover;
+  }
+
+  &:active {
+    background-color: $submitColorActive;
+    top: 4px;
+    box-shadow: none;
+  }
+}
+
+@media(max-width: 544px) {
+    .credit-form,
+    .payment-form__group-small,
+    .payment-form__group-medium,
+    .payment-form__group-normal,
+    .payment-form__group-large {
+     width: 100%;
+   }
+
+  .payment-form__pic-container {
+    text-align: left;
+  }
+}

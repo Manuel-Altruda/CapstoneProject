@@ -15,6 +15,7 @@ import { Dialog } from 'primeng/dialog';
 })
 export class NavbarComponent implements OnInit {
 
+  isLoggingOut: boolean = false;
   user : IUser | null = null;
   userLoggedIn : boolean = false;
   searchQuery : string = '';
@@ -137,7 +138,14 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.isLoggingOut = true; // Imposta isLoggingOut su true prima del logout
     this.authSvc.logout();
     this.userLoggedIn = false;
+
+    setTimeout(() => {
+      this.isLoggingOut = false; // Imposta isLoggingOut su false dopo il logout
+      // Puoi anche aggiungere il reindirizzamento qui se necessario
+    }, 3000);
   }
+
 }

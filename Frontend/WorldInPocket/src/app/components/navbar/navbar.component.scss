@@ -9,6 +9,7 @@ body{
 }
 
 h1{
+  font-family: "Roboto", sans-serif;
   width: 200px;
   font-size: 30px;
   margin-bottom: auto;
@@ -24,16 +25,74 @@ h1{
 }
 
 .navbar{
-  background-color: rgb(70, 179, 160);
-  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(15, 15, 15);
+  color: cadetblue;
+}
+
+.navbar-logo img {
+  max-height: 40px;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.center-search {
+  flex: 1; /* Usa lo spazio disponibile per centrare il contenuto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-icon {
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.navbar-toggle {
+  display: none;
+}
+
+.navbar-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar-links{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
 }
 
+.navbar-links li {
+  margin-right: 20px; /* Aggiungi spazi tra gli elementi del menu */
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #66f;
+}
+.centered-bar {
+  max-width: 80%; /* Imposta la larghezza massima desiderata */
+  margin: 0 auto; /* Per centrare la barra orizzontalmente */
+}
 .bar{
-  width:650px;
+  width:100%;
+  max-width: 869px;
   background:white;
   box-shadow:0 0 5px hsl(0 0% 78%);
   height:55px;
@@ -44,9 +103,14 @@ h1{
 }
 
 .bar div{
+  flex: 1;
   border-radius:inherit;
   padding:0.8rem 1.5rem;
   transition:background 250ms ease;
+}
+
+.bar div::before {
+  background: transparent;
 }
 
 .bar div:hover{
@@ -61,12 +125,15 @@ h1{
 }
 
 input[type="text"]{
+  font-family: "Roboto", sans-serif;
   background:none;
   border:none;
   padding:0.2rem 0 0 0;
+  width: 100%;
 }
 
 input[type="text"]:focus{
+  font-family: "Roboto", sans-serif;
   outline:none;
 }
 
@@ -78,6 +145,7 @@ input[type="text"]:focus{
   position: relative;
 }
 .guests span{
+  font-family: "Roboto", sans-serif;
   position:absolute;
   top:50%;
   right:10px;
@@ -121,3 +189,58 @@ input[type="text"]:focus{
   padding:0;
 }
 
+
+
+
+@media (max-width: 883px) {
+
+  .navbar-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #333;
+    width: 100%;
+    text-align: center;
+  }
+
+
+
+  .navbar-logo {
+    display: none;
+
+  }
+
+  .navbar-toggle:checked + .navbar-menu {
+    display: flex;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .navbar-links li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .navbar-links a {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 557px) {
+
+  .navbar-search {
+    display: none;
+
+  }
+
+}

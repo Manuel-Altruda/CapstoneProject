@@ -10,9 +10,14 @@ import { AuthService } from 'src/app/service/auth.service';
 export class LogoutComponent {
   constructor(private router: Router, private svc: AuthService) {}
 
+  isLoggingOut: boolean = false;
+
   ngOnInit() {
+    this.isLoggingOut = true;
+
     this.svc.logout();
     setTimeout(() => {
+      this.isLoggingOut = false;
       this.router.navigate(['']);
     }, 3000);
   }
