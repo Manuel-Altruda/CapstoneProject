@@ -16,6 +16,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { GalleriaModule } from 'primeng/galleria';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToolbarModule } from 'primeng/toolbar';
+import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -47,6 +48,10 @@ import { HomeHeaderComponent } from './components/home-header/home-header.compon
 import { PrenotazioneHotelComponent } from './components/prenotazione-hotel/prenotazione-hotel.component';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
 import { LogoutComponent } from './components/auth/logout/logout.component';
+import { VoloComponent } from './components/volo/volo.component';
+import { VoloDetailsComponent } from './components/volo-details/volo-details.component';
+import { PaySuccessComponent } from './components/pagamento/pay-success/pay-success.component';
+import { PayErrorComponent } from './components/pagamento/pay-error/pay-error.component';
 
 
 @NgModule({
@@ -70,6 +75,10 @@ import { LogoutComponent } from './components/auth/logout/logout.component';
     HomeFooterComponent,
     PrenotazioneHotelComponent,
     PagamentoComponent,
+    VoloComponent,
+    VoloDetailsComponent,
+    PaySuccessComponent,
+    PayErrorComponent,
 
   ],
   imports: [
@@ -85,6 +94,7 @@ import { LogoutComponent } from './components/auth/logout/logout.component';
     MenuModule,
     TagModule,
     FormsModule,
+    CalendarModule,
     CardModule,
     ProgressSpinnerModule,
     PasswordModule,

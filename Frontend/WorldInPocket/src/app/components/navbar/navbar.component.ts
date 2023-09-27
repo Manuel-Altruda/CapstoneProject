@@ -6,6 +6,7 @@ import { RegisterModalComponent } from '../register-modal/register-modal.compone
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { Dialog } from 'primeng/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -21,6 +22,8 @@ export class NavbarComponent implements OnInit {
   searchQuery : string = '';
   items : MenuItem[] | undefined;
   loading : boolean = false;
+  isMenuOpen = false;
+
 
   load() {
     this.loading = true;
@@ -33,7 +36,9 @@ export class NavbarComponent implements OnInit {
   constructor(
     private authSvc: AuthService,
     private dialogService: DialogService,
-    public messageService: MessageService
+    public messageService: MessageService,
+    private router:Router
+
   ) { this.authSvc.isUserLogged.subscribe( user => this.user = user ) }
 
   ngOnInit() {
@@ -41,57 +46,27 @@ export class NavbarComponent implements OnInit {
 
     this.items = [
       {
-        label: 'Messages Center',
-        items: [
-          {
-            label: 'Messaggi',
-            icon: 'pi pi-refresh',
-            command: () => {
-              this.update();
-            },
-          },
-          {
-            label: 'notifiche',
-            icon: 'pi pi-times',
-            command: () => {
-              this.delete();
-            },
-          },
-        ],
-      },
-      {
         label: 'Options',
         items: [
           {
-            label: 'Viaggi Prenotati',
-            icon: 'pi pi-external-link',
-            url: 'http://angular.io',
+            label: 'Profile',
+            icon: 'pi pi-user',
+            command: () => {
+               this.router.navigate(["/profile"]);
+            }
           },
           {
-            label: 'Router',
-            icon: 'pi pi-upload',
-            routerLink: '/fileupload',
-          },
-        ],
-      },
+            label: 'Sign out',
+            icon: 'pi pi-sign-out',
+            command: () => {
+              this.authSvc.logout();
+            }
+          }
+        ]
+      }
     ];
   }
 
-  update() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Data Updated',
-    });
-  }
-
-  delete() {
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Delete',
-      detail: 'Data Deleted',
-    });
-  }
 
   isLoginModalVisible = false;
   isRegisterModalVisible = false;
@@ -145,7 +120,21 @@ export class NavbarComponent implements OnInit {
     setTimeout(() => {
       this.isLoggingOut = false; // Imposta isLoggingOut su false dopo il logout
       // Puoi anche aggiungere il reindirizzamento qui se necessario
-    }, 3000);
+    }, 1000);
   }
 
+  options: any[] = [
+    { label: 'Opzione 1', value: 'opzione1' },
+    { label: 'Opzione 2', value: 'opzione2' },
+    { label: 'Opzione 3', value: 'opzione3' }
+  ];
+  selectedOption: any;
+
 }
+
+
+
+
+
+
+

@@ -10,6 +10,10 @@ import { AppComponent } from './app.component';
 import { HomeHeaderComponent } from './components/home-header/home-header.component';
 import { PrenotazioneHotelComponent } from './components/prenotazione-hotel/prenotazione-hotel.component';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
+import { VoloComponent } from './components/volo/volo.component';
+import { VoloDetailsComponent } from './components/volo-details/volo-details.component';
+import { PaySuccessComponent } from './components/pagamento/pay-success/pay-success.component';
+import { PayErrorComponent } from './components/pagamento/pay-error/pay-error.component';
 
 const routes: Routes = [
 
@@ -18,9 +22,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'hotel-details/:id', component: HotelDetailsComponent },
+  { path: 'volo', component: VoloComponent },
+  { path: 'volo-details/:id', component: VoloDetailsComponent },
   { path: 'prenotazione-hotel', component: PrenotazioneHotelComponent},
   { path: 'pagamento', component: PagamentoComponent },
+  { path: 'pagamento/:orderID', component: PagamentoComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'pay-success', component: PaySuccessComponent },
+  { path: 'pay-error', component: PayErrorComponent }
 
 ];
 

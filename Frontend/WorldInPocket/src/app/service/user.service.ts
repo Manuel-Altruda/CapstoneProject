@@ -26,19 +26,13 @@ getUser(): any {
   return this.user;
 }
 
-// Recupera il token JWT dal localStorage
 getToken(): string | null {
   return this.token || localStorage.getItem('accessToken');
 }
 
-// Rimuove il token JWT dal localStorage dopo il logout
 removeToken(): void {
   localStorage.removeItem('accessToken');
 }
 
-/* getPage(nPagina:number, size:number){
-  return this.http.get<Page>(environment.clienti+"?page="+nPagina+"&size="+size, {headers: this.headers});
-}
-*/
 
 }

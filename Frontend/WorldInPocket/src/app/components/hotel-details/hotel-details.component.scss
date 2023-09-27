@@ -126,13 +126,13 @@
 
 .reservation-container {
   display: flex;
-  justify-content: space-between; /* Distribuisci gli elementi a sinistra e a destra */
-  align-items: flex-start; /* Allinea gli elementi in alto */
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 /* Stile per la card dell'hotel */
 .hotel-card {
-  width: calc(50% - 10px); /* Larghezza al 50% del container con margine */
+  width: calc(50% - 10px);
   margin-right: 10px;
 }
 

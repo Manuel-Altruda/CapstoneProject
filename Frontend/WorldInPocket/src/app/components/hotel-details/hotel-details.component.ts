@@ -15,8 +15,11 @@ export class HotelDetailsComponent implements OnInit {
   isLoading = true;
   isError = false;
   selectedImage: string | null = null;
-  checkInDate: string = ''; // Variabile per la data di check-in
+  checkInDate: string = '';
   checkOutDate: string = '';
+  selectedRoomType: string = '';
+  numberOfGuests: number = 1;
+  orderID: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +27,13 @@ export class HotelDetailsComponent implements OnInit {
     private router: Router
   ) {}
 
+  onProceedToPayment(hotelId: string) {
+    // Genera un orderID basato sull'hotelId (puoi usare la tua logica)
+    const orderID = 'order-' + hotelId + '-' + Math.random().toString(36).substring(7);
 
+    // Reindirizza alla pagina di pagamento con l'hotelId come parametro
+    this.router.navigate(['/pagamento', hotelId], { queryParams: { orderID: orderID } });
+  }
 
   @ViewChild('galleria')
   galleria!: Galleria;
@@ -61,13 +70,12 @@ export class HotelDetailsComponent implements OnInit {
   }
   avviaPrenotazione() {
     if (!this.selectedHotel || !this.checkInDate || !this.checkOutDate) {
-      // Gestisci il caso in cui mancano dati essenziali per la prenotazione
+
       console.error('Dati mancanti per la prenotazione');
       return;
     }
 
-    // Reindirizza l'utente alla pagina di prenotazione con i parametri selezionati
-    this.router.navigate(['/prenotazione-hotel'], {
+    this.router.navigate(['/pagamento'], {
       queryParams: {
         hotelId: this.selectedHotel.id,
         checkIn: this.checkInDate,

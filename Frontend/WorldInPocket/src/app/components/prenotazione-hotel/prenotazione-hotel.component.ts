@@ -2,35 +2,40 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Iricevuta } from 'src/app/interfaces/Iricevuta';
+import { IUser } from 'src/app/interfaces/Iuser';
+//import { PrenotazioneService } from 'src/app/modelPyP/prenotazione.service';
 
 @Component({
   selector: 'app-prenotazione-hotel',
   templateUrl: './prenotazione-hotel.component.html',
-  styleUrls: ['./prenotazione-hotel.component.scss']
+  styleUrls: ['./prenotazione-hotel.component.scss'],
 })
 export class PrenotazioneHotelComponent {
   prenotazioneForm: FormGroup;
-
-  name: string = '';
-  email: string = '';
-  phone: string = '';
-  street: string = '';
-  streetNumber: string = '';
-  number: string = '';
-  city: string = '';
-  postCode: string = '';
-  country: string = '';
-  arrive: string = '';
-  depart: string = '';
-  people: Array<string> = [];
-  room: Array<string> = [];
-  bedding: Array<string> = [];
-  comments: Array<string> = [];
-
+  orderID!: string;
+  /*
+  Iricevuta: Iricevuta = {
+    orderID: '', // Inizializza con i valori predefiniti o vuoti
+    user: {} as IUser, // Inizializza con i valori predefiniti o vuoti
+    roomType: '',
+    numberOfGuests: 0,
+    id: this.orderID,
+    selectedHotel: null, // Inizializza con i valori predefiniti o vuoti
+    prenotazioni: [],
+    captureTime: new Date(),
+    totPrice: 0,
+  };*/
 
   showValidationError = false;
 
-  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder) {
+
+  constructor(
+    //private prenotazioneService: PrenotazioneService,
+    private http: HttpClient,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
     this.prenotazioneForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -43,7 +48,7 @@ export class PrenotazioneHotelComponent {
       country: ['', Validators.required],
       arrive: ['', Validators.required],
       depart: ['', Validators.required],
-      comments: ['']
+      comments: [''],
     });
   }
 
@@ -71,42 +76,33 @@ export class PrenotazioneHotelComponent {
     });
   }
 
-
+  isFormControlValid(fieldName: string): boolean {
+    const control = this.prenotazioneForm.get(fieldName);
+    return control?.valid || false;
+  }
 
   effettuaPrenotazione() {
     if (this.isFormValid()) {
-      const prenotazione = {
-        name: this.prenotazioneForm.get('name'),
-        email: this.prenotazioneForm.get('email'),
-        phone: this.prenotazioneForm.get('phone'),
-        street: this.prenotazioneForm.get('street'),
-        streetNumber: this.prenotazioneForm.get('streetNumber'),
-        city: this.prenotazioneForm.get('city'),
-        postCode: this.prenotazioneForm.get('postCode'),
-        people: this.prenotazioneForm.get('people'),
-        country: this.prenotazioneForm.get('country'),
-        arrive: this.prenotazioneForm.get('arrive'),
-        depart: this.prenotazioneForm.get('depart'),
-        comments: this.prenotazioneForm.get('comments'),
-        // Aggiungi gli altri campi del form
-      };
+      const prenotazione = this.prenotazioneForm.value;
 
+      // Assegna roomType qui
+      const tempRoomType = prenotazione.roomType;
+     // this.Iricevuta.roomType = tempRoomType;
 
-    this.http.post('/api/effettua-prenotazione', prenotazione).subscribe(
-      (response) => {
-
-        console.log('Prenotazione effettuata con successo:', response);
-
-      },
-      (error) => {
-        console.error('Errore durante la prenotazione:', error);
-      }
-    );
+      // Continua con il resto del codice di invio
+      this.http.post('/prenotazione', prenotazione).subscribe(
+        (response) => {
+          console.log('Prenotazione effettuata con successo:', response);
+        },
+        (error) => {
+          console.error('Errore durante la prenotazione:', error);
+        }
+      );
+    }
   }
+  navigateToPaymentPage() {
+    if (this.isFormValid()) {
+      this.router.navigate(['/pagamento']);
+    }
   }
-  navigateToPaymentPage(){
-    this.router.navigate(['/pagamento']);
-  }
-
-
 }

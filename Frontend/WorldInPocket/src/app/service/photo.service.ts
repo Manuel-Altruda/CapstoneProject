@@ -9,9 +9,9 @@ export class PhotoService {
   getImages(): Promise<any[]> {
     return new Promise<any[]>((resolve) => {
       setTimeout(() => {
-        const images: any[] = [/* ... array di immagini ... */];
+        const images: any[] = [];
         resolve(images);
-      }, 1000); // Esempio di ritardo simulato di 1 secondo
+      }, 1000);
     });
   }
 

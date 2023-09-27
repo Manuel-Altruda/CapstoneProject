@@ -37,7 +37,12 @@ h1{
   max-height: 40px;
 }
 
+.navbar-menu.open {
+  display: block;
+}
+
 .navbar-menu {
+  display: none;
   display: flex;
   align-items: center;
 }
@@ -205,7 +210,6 @@ input[type="text"]:focus{
     position: absolute;
     top: 60px;
     left: 0;
-    background-color: #333;
     width: 100%;
     text-align: center;
   }

@@ -8,17 +8,6 @@ import { iHotel } from '../interfaces/iHotel';
 })
 export class HotelService {
 
-
-/*
-  private apiUrl = '../../assets/hotel.json'; // http://localhost:8080/api/hotels
-
-  constructor(private http: HttpClient) {}
-
-
-  getHotelById(hotelId: string): Observable<any> {
-    return this.http.get<any[]>('/assets/hotel.json')
-  }
-*/
   private apiUrl = '../../assets/hotel.json';
 
   constructor(private http: HttpClient) {}
@@ -26,14 +15,14 @@ export class HotelService {
   getAllHotels(): Observable<any[]> {
    return this.http.get<any[]>(this.apiUrl)
       .pipe(
-        map((data: any) => data.hotels) // Estrai l'array 'hotels' dal tuo JSON
+        map((data: any) => data.hotels)
       );
   }
 
   getHotelById(hotelId: string): Observable<any> {
     return this.getAllHotels().pipe(
       map((hotels: any[]) => {
-      console.log(hotels); // Controlla i dati ottenuti
+      console.log(hotels);
       return hotels.find(hotel => hotel.id === hotelId);
     })
   );
