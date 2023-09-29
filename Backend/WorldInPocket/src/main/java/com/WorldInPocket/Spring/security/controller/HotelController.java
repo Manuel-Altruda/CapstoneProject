@@ -88,4 +88,16 @@ public class HotelController {
       }
     }
     
+    @GetMapping("/{hotelId}/price")
+    public ResponseEntity<Double> getHotelPrice(@PathVariable Long hotelId) {
+        // Ottieni il prezzo dell'hotel dal servizio o dal repository
+        Double hotelPrice = hotelService.getHotelPrice(hotelId);
+        
+        if (hotelPrice != null) {
+            return ResponseEntity.ok(hotelPrice);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
 }

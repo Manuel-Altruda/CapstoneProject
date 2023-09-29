@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//import com.WorldInPocket.Spring.security.Request.PrenotazioneAlloggioRequest;
 import com.WorldInPocket.Spring.security.entity.Alloggio;
 //import com.WorldInPocket.Spring.security.entity.Alloggio;
 import com.WorldInPocket.Spring.security.entity.PrenotazioneAlloggio;
@@ -114,6 +115,14 @@ public class PrenotazioneAlloggioService {
 
 	public Alloggio getPrenotazioniAlloggio() {
 		return null;
+	}
+
+	public List<PrenotazioneAlloggio> prenotaAlloggio(Alloggio prenotazioniAlloggio, Date dataCheckIn, Date dataCheckOut,
+			int numeroPersone) {
+		List<PrenotazioneAlloggio> prenotazioni = prenotazioneAlloggioRepository.findByAlloggio(prenotazioniAlloggio);
+
+       
+        return prenotazioni;
 	}
 	
 }

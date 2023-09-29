@@ -1,5 +1,7 @@
 package com.WorldInPocket.Spring.security.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,15 @@ public class HotelService {
         hotel1.setName(hotel.getName());
         
         return hotel1;
+    }
+
+    public Double getHotelPrice(Long hotelId) {
+        Optional<Hotel> hotelOptional = hotelRepository.findById(hotelId);
+        if (hotelOptional.isPresent()) {
+            Hotel hotel = hotelOptional.get();
+            return hotel.getPrezzo();
+        } else {
+            return null;
+        }
     }
 }

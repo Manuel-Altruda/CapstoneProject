@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+//import com.WorldInPocket.Spring.security.Request.PrenotazioneAlloggioRequest;
 import com.WorldInPocket.Spring.security.entity.Alloggio;
 //import com.WorldInPocket.Spring.security.entity.Alloggio;
 import com.WorldInPocket.Spring.security.entity.Destinazione;
@@ -31,5 +32,7 @@ public interface PrenotazioneAlloggioRepository extends JpaRepository<Prenotazio
 	List<PrenotazioneAlloggio> findByDataCheckOut(Date dataCheckOut);
 
 	List<PrenotazioneAlloggio> findByAlloggio(Alloggio alloggio);
+
+	//List<PrenotazioneAlloggio> save(PrenotazioneAlloggioRequest prenotazioneAlloggioRequest);
 	
 }

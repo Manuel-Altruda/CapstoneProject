@@ -16,6 +16,7 @@ import com.WorldInPocket.Spring.security.payload.RegisterDto;
 import com.WorldInPocket.Spring.security.repository.RoleRepository;
 import com.WorldInPocket.Spring.security.repository.UserRepository;
 import com.WorldInPocket.Spring.security.service.AuthService;
+import com.WorldInPocket.Spring.security.service.PaypalService;
 
 
 @Component
@@ -25,6 +26,7 @@ public class AuthRunner implements ApplicationRunner {
 	@Autowired UserRepository userRepository;
 	@Autowired PasswordEncoder passwordEncoder;
 	@Autowired AuthService authService;
+	@Autowired PaypalService paypalSvc;
 	
 	private Set<Role> adminRole;
 	private Set<Role> moderatorRole;
@@ -36,6 +38,8 @@ public class AuthRunner implements ApplicationRunner {
 		
 		// Da lanciare solo la prima volta
 		//setRoleDefault();
+		
+		//System.out.println (paypalSvc.getAccessToken());
 		
 	}
 	

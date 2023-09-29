@@ -1,6 +1,8 @@
 package com.WorldInPocket.Spring.security.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,11 +24,13 @@ import com.WorldInPocket.Spring.security.repository.RoleRepository;
 import com.WorldInPocket.Spring.security.repository.UserRepository;
 import com.WorldInPocket.Spring.security.security.JwtTokenProvider;
 
+import jakarta.persistence.EntityNotFoundException;
+
 
 
 @Service
 public class AuthServiceImpl implements AuthService {
-
+	
     private AuthenticationManager authenticationManager;
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -64,13 +68,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String register(RegisterDto registerDto) {
-
-        // add check for username exists in database
         if(userRepository.existsByUsername(registerDto.getUsername())){
             throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username is already exists!.");
         }
-
-        // add check for email exists in database
         if(userRepository.existsByEmail(registerDto.getEmail())){
             throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email is already exists!.");
         }
@@ -100,55 +100,27 @@ public class AuthServiceImpl implements AuthService {
         return "User registered successfully!.";
     }
     
-//    @Override
-//    public String register(RegisterDto registerDto) {
-//    	// add check for username exists in database
-//      if(userRepository.existsByUsername(registerDto.getUsername())){
-//          throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username is already exists!.");
-//      }
-//
-//      // add check for email exists in database
-//      if(userRepository.existsByEmail(registerDto.getEmail())){
-//          throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email is already exists!.");
-//      }
-//
-//      User user = new User();
-//      user.setName(registerDto.getName());
-//      user.setUsername(registerDto.getUsername());
-//      user.setEmail(registerDto.getEmail());
-//      user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-//      
-//        Set<Role> roles = new HashSet<>();
-//        
-//        if (registerDto.getRoles() != null) {
-//            registerDto.getRoles().forEach(role -> {
-//                Optional<Role> optionalRole = roleRepository.findByRoleName(getRole(role));
-//                if (optionalRole.isPresent()) {
-//                    Role userRole = optionalRole.get();
-//                    roles.add(userRole);
-//                } else {
-//                    throw new MyAPIException(HttpStatus.BAD_REQUEST, "Role not found: " + role);
-//                }
-//            });
-//        } else {
-//            Role userRole = roleRepository.findByRoleName(ERole.ROLE_USER).orElseThrow(() ->
-//                new MyAPIException(HttpStatus.BAD_REQUEST, "Default role not found")
-//            );
-//            roles.add(userRole);
-//        }
-//        
-//        // Altri passaggi della registrazione...
-//
-//        return "User registered successfully!.";
-//    }
-
+    @Override
+    public User getUserByEmailOrUsername(String credential) {
+        if (!userRepository.existsByEmail(credential) && userRepository.existsByUsername(credential)) {
+            throw new EntityNotFoundException("Couldn't find the user.");
+        }
+        return userRepository.findByUsernameOrEmail(credential, credential).orElseThrow(() -> new EntityNotFoundException("Couldn't find the user."));
+    }
     
-    
+    public User getUserByEmailOrPassword(String credential) {
+    	if(!userRepository.existsByEmail(credential) && userRepository.existsByUsername(credential))
+    		throw new EntityNotFoundException("Couldn't find the user.");
+    	return userRepository.findByUsernameOrEmail(credential, credential).get();
+    }
+      
     public ERole getRole(String role) {
     	if(role.equals("ADMIN")) return ERole.ROLE_ADMIN;
     	else if(role.equals("MODERATOR")) return ERole.ROLE_MODERATOR;
     	else return ERole.ROLE_USER;
     }
+
+	
     
     
     

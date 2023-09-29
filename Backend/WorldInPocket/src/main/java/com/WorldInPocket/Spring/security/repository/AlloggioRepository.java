@@ -26,6 +26,4 @@ public interface AlloggioRepository extends JpaRepository<Alloggio, Long> {
 
 	List<PrenotazioneAlloggio> findPrenotazioniByAlloggioId(Long alloggioId);
 
-
-
 }

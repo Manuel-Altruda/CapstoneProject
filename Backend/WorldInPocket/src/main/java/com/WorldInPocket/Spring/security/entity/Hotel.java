@@ -33,6 +33,17 @@ public class Hotel {
 	private double rating;
 	private double prezzo;
 	
+	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    private List<PrenotazioneAlloggio> prenotazioniAlloggio;
+	
+	public List<PrenotazioneAlloggio> getPrenotazioniAlloggio() {
+        return prenotazioniAlloggio;
+    }
+
+    public void setPrenotazioniAlloggio(List<PrenotazioneAlloggio> prenotazioniAlloggio) {
+        this.prenotazioniAlloggio = prenotazioniAlloggio;
+    }
+	
 	public String getName() {
 		return name;
 	}

@@ -1,5 +1,6 @@
 package com.WorldInPocket.Spring.security.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -12,14 +13,28 @@ public class Volo {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private final String origin;
     private String compagniaAerea;
     private String numeroVolo;
     private String destinazione;
     private String descrizione;
-    private Date dataPartenza;
-    private Date dataArrivo;
+    private LocalDate dataCheckIn;
+    private LocalDate dataCheckOut;
     private int numeroPasseggeri;
     private double prezzo;
+    
+    
+    public Volo(String origin, String compagniaAerea, String numeroVolo, String destinazione, String descrizione, LocalDate dataCheckIn, LocalDate dataCheckOut, int numeroPasseggeri, double prezzo) {
+        this.origin = origin;
+        this.compagniaAerea = compagniaAerea;
+        this.numeroVolo = numeroVolo;
+        this.destinazione = destinazione;
+        this.descrizione = descrizione;
+        this.dataCheckIn = dataCheckIn;
+        this.dataCheckOut = dataCheckOut;
+        this.numeroPasseggeri = numeroPasseggeri;
+        this.prezzo = prezzo;
+    }
     
 	public Long getId() {
 		return id;
@@ -45,20 +60,20 @@ public class Volo {
 		this.destinazione = destinazione;
 	}
 	
-	public Date getDataPartenza() {
-		return dataPartenza;
+	public LocalDate getDataCheckIn() {
+		return dataCheckIn;
 	}
 	
-	public void setDataPartenza(Date dataPartenza) {
-		this.dataPartenza = dataPartenza;
+	public void setDataCheckIn(LocalDate dataCheckIn) {
+		this.dataCheckIn = dataCheckIn;
 	}
 	
-	public Date getDataArrivo() {
-		return dataArrivo;
+	public LocalDate getDataCheckOut() {
+		return dataCheckOut;
 	}
 	
-	public void setDataArrivo(Date dataArrivo) {
-		this.dataArrivo = dataArrivo;
+	public void setDataCheckOut(LocalDate dataCheckOut) {
+		this.dataCheckOut = dataCheckOut;
 	}
 	
 	public int getNumeroPasseggeri() {
@@ -93,8 +108,9 @@ public class Volo {
 		this.numeroVolo = numeroVolo;
 	}
 
+	public String getOrigin() {
+		return origin;
+	}
 	
-	
-    
     
 }

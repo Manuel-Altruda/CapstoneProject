@@ -1,8 +1,8 @@
 package com.WorldInPocket.Spring.security.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UserService implements IuserService{
+	private List<User> users = new ArrayList<>();
 	
 	@Autowired
     private UserRepository userRepository;
 	
 	 
-	 @Autowired
 	   public UserService(UserRepository userRepository) {
 	       this.userRepository = userRepository;
 	       
@@ -51,9 +51,6 @@ public class UserService implements IuserService{
         userRepository.deleteById(id);
     }
     
-    
-
-    
     @Override
     public User createUser(User user) {
         return userRepository.save(user);
@@ -72,8 +69,12 @@ public class UserService implements IuserService{
 
     @Override
     public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return users.stream()
+            .filter(user -> user.getEmail().equals(email))
+            .findFirst()
+            .orElse(null);
     }
+
 
     @Override
     public List<User> getAllUsers() {
@@ -93,5 +94,12 @@ public class UserService implements IuserService{
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+    
+    public User getUserByEmailOrPassword(String username, String password) {
+        return users.stream()
+            .filter(user -> user.getUsername().equals(username) && user.getPassword().equals(password))
+            .findFirst()
+            .orElse(null);
     }
 }

@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+//import com.WorldInPocket.Spring.security.Request.PrenotazioneAlloggioRequest;
 //import com.WorldInPocket.Spring.security.entity.Alloggio;
 import com.WorldInPocket.Spring.security.entity.PrenotazioneAlloggio;
 import com.WorldInPocket.Spring.security.service.PrenotazioneAlloggioService;
 
 @RestController
-@RequestMapping("/api/prenotazione-alloggi")
+@RequestMapping("/prenotazione")
 public class PrenotazioneAlloggioController {
 	
 	    @Autowired
@@ -44,8 +45,8 @@ public class PrenotazioneAlloggioController {
 	    }
 
 	    @PostMapping
-	    public ResponseEntity<PrenotazioneAlloggio> createPrenotazioneAlloggio(@RequestBody PrenotazioneAlloggio prenotazioneAlloggio) {
-	        PrenotazioneAlloggio savedPrenotazione = prenotazioneAlloggioService.createPrenotazioneAlloggio(prenotazioneAlloggio);
+	    public ResponseEntity<PrenotazioneAlloggio> createPrenotazioneAlloggio(@RequestBody PrenotazioneAlloggio prenotazioneAlloggioRequest) {
+	        PrenotazioneAlloggio savedPrenotazione = (PrenotazioneAlloggio) prenotazioneAlloggioService.createPrenotazioneAlloggio(prenotazioneAlloggioRequest);
 	        return new ResponseEntity<>(savedPrenotazione, HttpStatus.CREATED);
 	    }
 
@@ -78,26 +79,30 @@ public class PrenotazioneAlloggioController {
 	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	        }
 	    }
+	    
+	    @PostMapping("/prenotazione")
+	    public ResponseEntity<String> prenotaAlloggio(
+	            @RequestBody PrenotazioneAlloggioService request,
+	            @RequestParam("dataCheckIn") Date dataCheckIn,
+	            @RequestParam("dataCheckOut") Date dataCheckOut,
+	            @RequestParam("numeroPersone") int numeroPersone
+	    ) {
+	        List<PrenotazioneAlloggio> nuovaPrenotazione = prenotazioneAlloggioService.prenotaAlloggio(
+	                request.getPrenotazioniAlloggio(), dataCheckIn, dataCheckOut, numeroPersone);
+
+	        if (nuovaPrenotazione != null) {
+	            return ResponseEntity.ok("Prenotazione effettuata con successo");
+	        } else {
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Impossibile effettuare la prenotazione");
+	        }
+	    }
+	    
+	    
 	}
 
     
-//    @PostMapping("/nuova-prenotazione")
-//    public ResponseEntity<String> prenotaAlloggio(
-//            @RequestBody PrenotazioneAlloggioService request,
-//            @RequestParam("dataCheckIn") Date dataCheckIn,
-//            @RequestParam("dataCheckOut") Date dataCheckOut,
-//            @RequestParam("numeroPersone") int numeroPersone
-//    ) {
-//        PrenotazioneAlloggio nuovaPrenotazione = prenotazioneAlloggioService.prenotaAlloggio(
-//                request.getPrenotazioniAlloggio(), dataCheckIn, dataCheckOut, numeroPersone);
-//
-//        if (nuovaPrenotazione != null) {
-//            return ResponseEntity.ok("Prenotazione effettuata con successo");
-//        } else {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Impossibile effettuare la prenotazione");
-//        }
-//    }
-// 
+    
+ 
 
 
 
