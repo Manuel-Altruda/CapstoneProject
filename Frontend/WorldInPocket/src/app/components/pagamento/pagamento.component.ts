@@ -32,6 +32,7 @@ export class PagamentoComponent implements OnInit {
   selectedHotel: any;
   hotelId: string = '';
   orderID: string = '';
+  ricevutaDTO: any;
 
   constructor(
     private authSvc: AuthService,
@@ -48,16 +49,7 @@ export class PagamentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.Iricevuta = {
-      orderID: this.hotelId,
-      user: {
-        username: this.user?.username || '',
-        accessToken: this.user?.accessToken || '',
-        tokenType: 'Bearer',
-      },
-      prenotazioni: [],
 
-    };
     console.log('RicevutaDTO:', this.Iricevuta);
     this.route.params.subscribe((params) => {
       this.hotelId = params['hotelId'];
@@ -65,17 +57,31 @@ export class PagamentoComponent implements OnInit {
     this.route.queryParams.subscribe((queryParams) => {
       this.orderID = queryParams['orderID'];
     });
+
     let payPalButtons = paypal
       .Buttons({
         createOrder: (data: any) => {
           console.log(this.Iricevuta);
+          const ricevutaDTO = {
+            orderID: this.hotelId,
+            user: {
+              username: this.user?.username || '',
+              accessToken: this.user?.accessToken || '',
+              tokenType: 'Bearer',
+            },
+            prenotazioni: [
+              {
+
+              }
+            ],
+          };
           return fetch(environment.payments, {
             method: 'POST',
             headers: {
               Authorization: 'Bearer ' + this.user!.accessToken,
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(this.Iricevuta),
+            body: JSON.stringify(ricevutaDTO),
           })
             .then((res) => res.text())
             .then(id => {
@@ -142,4 +148,13 @@ export class PagamentoComponent implements OnInit {
   }
 }
 
+/* this.Iricevuta = {
+      orderID: this.hotelId,
+      user: {
+        username: this.user?.username || '',
+        accessToken: this.user?.accessToken || '',
+        tokenType: 'Bearer',
+      },
+      prenotazioni: [],
 
+    }; */

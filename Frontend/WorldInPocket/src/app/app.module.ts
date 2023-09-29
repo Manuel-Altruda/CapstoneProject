@@ -52,6 +52,8 @@ import { VoloComponent } from './components/volo/volo.component';
 import { VoloDetailsComponent } from './components/volo-details/volo-details.component';
 import { PaySuccessComponent } from './components/pagamento/pay-success/pay-success.component';
 import { PayErrorComponent } from './components/pagamento/pay-error/pay-error.component';
+import { SectionDashboardComponent } from './components/section-dashboard/section-dashboard.component';
+import { RicercaService } from './service/ricerca.service';
 
 
 @NgModule({
@@ -79,6 +81,7 @@ import { PayErrorComponent } from './components/pagamento/pay-error/pay-error.co
     VoloDetailsComponent,
     PaySuccessComponent,
     PayErrorComponent,
+    SectionDashboardComponent,
 
   ],
   imports: [
@@ -112,6 +115,7 @@ import { PayErrorComponent } from './components/pagamento/pay-error/pay-error.co
     AppRoutingModule
   ],
   providers: [
+    RicercaService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
     MessageService,

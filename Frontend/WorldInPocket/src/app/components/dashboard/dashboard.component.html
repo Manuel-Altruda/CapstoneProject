@@ -42,13 +42,17 @@
         {{ hotel.shortDescription }}
       </p>
       <ng-template pTemplate="footer">
-        <p-button
-          label="Vedi di più"
-          icon="pi pi-check"
-          [routerLink]="['/hotel-details', hotel.id]"
-        ></p-button>
+        <div class="center-button">
+          <button class="custom-button" [routerLink]="['/hotel-details', hotel.id]">
+            <i class="pi pi-check"></i>
+            Vedi di più
+          </button>
+        </div>
       </ng-template>
     </p-card>
   </div>
 </div>
+
+
+
 <!-- (click)="goToHotelDetails(hotel.id)" -->

@@ -214,7 +214,15 @@ input[type="text"]:focus{
     text-align: center;
   }
 
-
+  .navbar-menu.open {
+    display: block !important;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
 
   .navbar-logo {
     display: none;

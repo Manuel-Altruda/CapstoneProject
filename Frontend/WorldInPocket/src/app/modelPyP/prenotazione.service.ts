@@ -9,14 +9,19 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PrenotazioneService {
-  protected ricevuta?:Iricevuta;
+  protected ricevuta ?: Iricevuta;
   private prenotazioneSubject: BehaviorSubject<Iricevuta | undefined> = new BehaviorSubject<Iricevuta | undefined>(
     undefined
   );
 
+// private prenotazione : Iricevuta
+
 constructor(private http: HttpClient) { }
 
+
+
 setPrenotazione(prenotazione: Iricevuta): void {
+  this.ricevuta = prenotazione;
   this.prenotazioneSubject.next(prenotazione);
 }
 
@@ -24,7 +29,19 @@ getPrenotazione(): Observable<Iricevuta | undefined> {
   return this.prenotazioneSubject.asObservable();
 }
 
-inviaDettagliPrenotazione(dettagli: any): Observable<any> {
+
+setRoomType(roomType: string) {
+  if (this.ricevuta) {
+    this.ricevuta.roomType = roomType;
+  }
+}
+
+getRoomType(): string {
+  return this.ricevuta?.roomType || '';
+}
+
+
+/*inviaDettagliPrenotazione(dettagli: any): Observable<any> {
   const url = 'http://localhost:8080/prenotazione';
   return this.http.post(url, dettagli).pipe(
     tap(() => {
@@ -37,7 +54,7 @@ inviaDettagliPrenotazione(dettagli: any): Observable<any> {
       return of(null);
     })
   );
-}
+}*/
 
   selectedRoomType: string = '';
   numberOfGuests: number = 1;

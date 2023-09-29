@@ -75,7 +75,7 @@ export class HotelDetailsComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['/pagamento'], {
+    this.router.navigate(['/prenotazione-hotel'], {
       queryParams: {
         hotelId: this.selectedHotel.id,
         checkIn: this.checkInDate,

@@ -48,11 +48,11 @@ export class VoloDetailsComponent implements OnInit {
       );
   }
 
-  cercaVoli(destinazione: string, dataCheckIn: string, dataCheckOut: string, numeroViaggiatori: number, prezzo: number) {
+ /* cercaVoli(destinazione: string, dataCheckIn: string, dataCheckOut: string, numeroViaggiatori: number, prezzo: number) {
     this.voloSvc.cercaVoli(destinazione, dataCheckIn, dataCheckOut, numeroViaggiatori, prezzo)
     .subscribe((voli) => {
       this.voli = voli;
     })
-  }
+  }*/
 
 }

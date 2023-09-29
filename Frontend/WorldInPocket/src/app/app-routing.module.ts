@@ -14,12 +14,14 @@ import { VoloComponent } from './components/volo/volo.component';
 import { VoloDetailsComponent } from './components/volo-details/volo-details.component';
 import { PaySuccessComponent } from './components/pagamento/pay-success/pay-success.component';
 import { PayErrorComponent } from './components/pagamento/pay-error/pay-error.component';
+import { SectionDashboardComponent } from './components/section-dashboard/section-dashboard.component';
 
 const routes: Routes = [
 
 
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'section-dashboard', component: SectionDashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'hotel-details/:id', component: HotelDetailsComponent },
   { path: 'volo', component: VoloComponent },

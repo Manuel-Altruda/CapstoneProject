@@ -187,3 +187,28 @@ p span {
   border-bottom: 2px solid #FF5A5F;
 }
 
+.custom-button {
+  background-color: #3f4041;
+  color: #fff;
+  border: none;
+  border-radius: 34px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  i {
+    margin-right: 5px;
+  }
+
+
+  &:hover {
+    background-color: #9ea1a3;
+  }
+}
+
+
+.center-button {
+  display: flex;
+  justify-content: center; /* Centra orizzontalmente */
+  margin-top: 10px; /* Aggiungi margine superiore a tuo piacimento */
+}

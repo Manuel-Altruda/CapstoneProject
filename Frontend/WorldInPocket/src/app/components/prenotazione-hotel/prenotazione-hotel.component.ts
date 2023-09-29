@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Iricevuta } from 'src/app/interfaces/Iricevuta';
 import { IUser } from 'src/app/interfaces/Iuser';
+import { PrenotazioneService } from 'src/app/modelPyP/prenotazione.service';
 //import { PrenotazioneService } from 'src/app/modelPyP/prenotazione.service';
 
 @Component({
@@ -14,6 +15,11 @@ import { IUser } from 'src/app/interfaces/Iuser';
 export class PrenotazioneHotelComponent {
   prenotazioneForm: FormGroup;
   orderID!: string;
+  Iricevuta: any;
+  showValidationError = false;
+  hotelId: any;
+  user: any;
+
   /*
   Iricevuta: Iricevuta = {
     orderID: '', // Inizializza con i valori predefiniti o vuoti
@@ -27,14 +33,14 @@ export class PrenotazioneHotelComponent {
     totPrice: 0,
   };*/
 
-  showValidationError = false;
 
 
   constructor(
     //private prenotazioneService: PrenotazioneService,
     private http: HttpClient,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private prenotazioneService: PrenotazioneService
   ) {
     this.prenotazioneForm = this.fb.group({
       name: ['', Validators.required],
@@ -82,23 +88,44 @@ export class PrenotazioneHotelComponent {
   }
 
   effettuaPrenotazione() {
-    if (this.isFormValid()) {
-      const prenotazione = this.prenotazioneForm.value;
-
-      // Assegna roomType qui
-      const tempRoomType = prenotazione.roomType;
-     // this.Iricevuta.roomType = tempRoomType;
-
-      // Continua con il resto del codice di invio
-      this.http.post('/prenotazione', prenotazione).subscribe(
-        (response) => {
-          console.log('Prenotazione effettuata con successo:', response);
+    if (this.prenotazioneForm.valid) {
+      const dettagliPrenotazione = {
+        orderID: this.hotelId,
+        user: {
+          username: this.user?.username || '',
+          accessToken: this.user?.accessToken || '',
+          tokenType: 'Bearer',
         },
-        (error) => {
-          console.error('Errore durante la prenotazione:', error);
-        }
-      );
-    }
+        prenotazioni: [
+          {
+            name: this.prenotazioneForm.get('name')?.value,
+            email: this.prenotazioneForm.get('email')?.value,
+            phone: this.prenotazioneForm.get('phone')?.value,
+            street: this.prenotazioneForm.get('street')?.value,
+            streetNumber: this.prenotazioneForm.get('streetNumber')?.value,
+            city: this.prenotazioneForm.get('city')?.value ?? '',
+            postCode: this.prenotazioneForm.get('postCode')?.value,
+            country: this.prenotazioneForm.get('country')?.value,
+            arrive: this.prenotazioneForm.get('arrive')?.value,
+            depart: this.prenotazioneForm.get('depart')?.value,
+            people: this.prenotazioneForm.get('people')?.value,
+            roomType: this.prenotazioneForm.get('roomType')?.value,
+            numberOfGuests: this.prenotazioneForm.get('numberOfGuests')?.value,
+          }
+        ],
+      };
+      this.Iricevuta = {
+        orderID: this.hotelId,
+        user: {
+          username: this.user?.username || '',
+          accessToken: this.user?.accessToken || '',
+          tokenType: 'Bearer',
+        },
+        prenotazioni: dettagliPrenotazione.prenotazioni,
+      };
+
+
+  }
   }
   navigateToPaymentPage() {
     if (this.isFormValid()) {
