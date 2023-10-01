@@ -1,6 +1,7 @@
 import { IUser } from "./Iuser";
 
 export interface Iprenotazione {
+  hotel: string;
   roomType: string;
   user : IUser;
   phone: string,

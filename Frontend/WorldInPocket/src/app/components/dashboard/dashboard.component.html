@@ -18,8 +18,9 @@
     class="card flex justify-content-center"
     *ngFor="let hotel of hotels"
     #hotelCard
+
   >
-    <p-card [header]="hotel.name" [style]="{ width: '360px' }">
+    <p-card [header]="hotel.name" [style]="{ width: '360px', height: '490px' }" >
       <ng-template pTemplate="header">
         <p-carousel
           [value]="hotel.images"
@@ -38,17 +39,17 @@
           </ng-template>
         </p-carousel>
       </ng-template>
-      <p>
+      <p class="card-text" (click)="goToHotelDetails(hotel.id)">
         {{ hotel.shortDescription }}
       </p>
-      <ng-template pTemplate="footer">
+     <!-- <ng-template pTemplate="footer">
         <div class="center-button">
           <button class="custom-button" [routerLink]="['/hotel-details', hotel.id]">
             <i class="pi pi-check"></i>
             Vedi di più
           </button>
         </div>
-      </ng-template>
+      </ng-template>-->
     </p-card>
   </div>
 </div>

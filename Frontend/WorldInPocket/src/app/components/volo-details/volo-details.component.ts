@@ -7,39 +7,24 @@ import { Volo } from './volo';
   selector: 'app-volo-details',
   templateUrl: './volo-details.component.html',
   styleUrls: ['./volo-details.component.scss'],
-  template: `
 
-  <div *ngFor = "let volo of voli">
-    <div class="flight-card">
-      {{ volo.destinazione }} - {{ volo.checkInDate }} to {{  volo.checkOutDate }}
-
-      Viaggiatori: {{ volo.nuemeroPasseggeri }}, Prezzo: {{  volo.prezzo }}
-    </div>
-  </div>
-
-  `
 })
 
 
 export class VoloDetailsComponent implements OnInit {
   volo: any;
   voli: Volo[] = [];
+  id !: number;
 
   constructor(private route: ActivatedRoute, private voloSvc: VoloService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const voloId = +params['id']; // Ottieni l'ID del volo dalla route
-      this.voloSvc.getVoloById(voloId).subscribe(result => {
-        this.volo = result;
-      });
-    });
+    this.id = Number(this.route.snapshot.paramMap.get("id"));
   }
 
 
   getVoloDetails(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.voloSvc.getVoloById(id)
+    this.voloSvc.getVoloById(this.id)
       .subscribe(
         volo => this.volo = volo,
         error => {

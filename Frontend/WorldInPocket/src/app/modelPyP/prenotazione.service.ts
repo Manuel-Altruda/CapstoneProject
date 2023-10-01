@@ -1,5 +1,6 @@
+import { Iprenotazione } from './../interfaces/Iprenotazione';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Iricevuta } from '../interfaces/Iricevuta';
 import { environment } from 'src/environments/environment.development';
 import { RicevutaSkl } from '../interfaces/ricevutaSkl';
@@ -9,37 +10,24 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PrenotazioneService {
-  protected ricevuta ?: Iricevuta;
-  private prenotazioneSubject: BehaviorSubject<Iricevuta | undefined> = new BehaviorSubject<Iricevuta | undefined>(
-    undefined
-  );
+  private ricevutaSubject: BehaviorSubject<Iprenotazione | undefined> = new BehaviorSubject<Iprenotazione | undefined>( undefined );
 
-// private prenotazione : Iricevuta
-
-constructor(private http: HttpClient) { }
-
-
-
-setPrenotazione(prenotazione: Iricevuta): void {
-  this.ricevuta = prenotazione;
-  this.prenotazioneSubject.next(prenotazione);
-}
-
-getPrenotazione(): Observable<Iricevuta | undefined> {
-  return this.prenotazioneSubject.asObservable();
-}
-
-
-setRoomType(roomType: string) {
-  if (this.ricevuta) {
-    this.ricevuta.roomType = roomType;
+constructor(private http: HttpClient) {
+  let ricevutaStorage: Iprenotazione = JSON.parse( sessionStorage.getItem( 'prenotazione' ) ! );
+  if (ricevutaStorage) {
+    this.ricevutaSubject.next (ricevutaStorage)
   }
 }
 
-getRoomType(): string {
-  return this.ricevuta?.roomType || '';
+setPrenotazione(prenotazione: Iprenotazione): void {
+  sessionStorage.setItem('prenotazione', JSON.stringify(prenotazione));
+  this.ricevutaSubject.next (prenotazione);
+  console.log (prenotazione);
 }
 
+getPrenotazione(): Observable<Iprenotazione | undefined> {
+  return this.ricevutaSubject.asObservable();
+}
 
 /*inviaDettagliPrenotazione(dettagli: any): Observable<any> {
   const url = 'http://localhost:8080/prenotazione';
@@ -66,20 +54,8 @@ reset() {
   this.selectedHotel = null;
 }
 
-prenotazione(ricevuta:Iricevuta, orderID: string){
-  ricevuta.orderID = orderID;
-  return this.http.post(environment.ricevuta, ricevuta);
-}
-
-setRicevuta(ricevuta:Iricevuta){
-  this.ricevuta=ricevuta;
-  sessionStorage.setItem("ricevuta", JSON.stringify(ricevuta));
-}
-
-getRicevuta(){
-  if(this.ricevuta) return this.ricevuta;
-  let ricevuta=JSON.parse(sessionStorage.getItem("ricevuta")!);
-  if(ricevuta) return ricevuta;
+creaPrenotazione(prenotazione:Iprenotazione){
+  return this.http.post(environment.ricevuta, prenotazione);
 }
 
 getHotelPrice(hotelId: string): Observable<number> {

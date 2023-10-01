@@ -1,8 +1,10 @@
 .card-container {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
   display: flex;
   width: auto;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -15,9 +17,12 @@
   display: flex;
   justify-content: center;
 }
-
-i {
-
+.p-card-footer {
+  height: 40px;
+}
+.card-text {
+  max-height: calc(100% - 40px);
+  overflow-y: auto;
 }
 
 button {
@@ -209,6 +214,6 @@ p span {
 
 .center-button {
   display: flex;
-  justify-content: center; /* Centra orizzontalmente */
-  margin-top: 10px; /* Aggiungi margine superiore a tuo piacimento */
+  justify-content: center;
+  margin-top: 10px;
 }

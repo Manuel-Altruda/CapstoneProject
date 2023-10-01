@@ -1,3 +1,4 @@
+import { Iprenotazione } from './../../interfaces/Iprenotazione';
 import { PrenotazioneService } from './../../modelPyP/prenotazione.service';
 import { Iricevuta } from './../../interfaces/Iricevuta';
 import { HttpClient } from '@angular/common/http';
@@ -26,6 +27,7 @@ export class PagamentoComponent implements OnInit {
 
   private user: IUser | null = null;
   Iricevuta!: Iricevuta;
+  prenotazione !: Iprenotazione;
   paypalInitialized: boolean = false;
   selectedRoomType: string = '';
   numberOfGuests: number = 1;
@@ -46,11 +48,16 @@ export class PagamentoComponent implements OnInit {
     authSvc.isUserLogged.subscribe((u) => {this.user = u
     console.log(this.user)} );
 
+    this.prenotazioneSvc.getPrenotazione().subscribe( (p) => {
+      console.log(p);
+      this.prenotazione != p;
+    })
+
+
   }
 
   ngOnInit(): void {
 
-    console.log('RicevutaDTO:', this.Iricevuta);
     this.route.params.subscribe((params) => {
       this.hotelId = params['hotelId'];
     });
@@ -61,27 +68,14 @@ export class PagamentoComponent implements OnInit {
     let payPalButtons = paypal
       .Buttons({
         createOrder: (data: any) => {
-          console.log(this.Iricevuta);
-          const ricevutaDTO = {
-            orderID: this.hotelId,
-            user: {
-              username: this.user?.username || '',
-              accessToken: this.user?.accessToken || '',
-              tokenType: 'Bearer',
-            },
-            prenotazioni: [
-              {
-
-              }
-            ],
-          };
+          console.log(this.prenotazione);
           return fetch(environment.payments, {
             method: 'POST',
             headers: {
               Authorization: 'Bearer ' + this.user!.accessToken,
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(ricevutaDTO),
+            body: JSON.stringify(this.prenotazione),
           })
             .then((res) => res.text())
             .then(id => {
@@ -103,7 +97,7 @@ export class PagamentoComponent implements OnInit {
             .then((response) => response.json())
             .then((json) => {
               this.prenotazioneSvc
-                .prenotazione(this.Iricevuta, this.orderID)
+                .creaPrenotazione(this.prenotazione)
                 .subscribe((data: any) => {
                   this.prenotazioneSvc.reset();
                   this.router.navigate(['/pay-success']);

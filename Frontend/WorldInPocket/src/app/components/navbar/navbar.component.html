@@ -1,38 +1,3 @@
-<!-- <nav class="navbar" style="
-display: flex;
-justify-content: space-between;
-">
-  <div class="navbar-logo">
-      <img src="">
-  </div>
-  <div class="navbar-search">
-      <div class="bar">
-          <div class="location">
-              <p>Location</p>
-              <input type="text" placeholder="Where are you going?">
-          </div>
-          <div class="check-in">
-              <p>Check in</p>
-              <input type="text" placeholder="Add dates">
-          </div>
-          <div class="check-out">
-              <p>Check out</p>
-              <input type="text" placeholder="Add dates">
-          </div>
-          <div class="guests">
-              <p>Guests</p>
-              <input type="text" placeholder="Add guests" class="w-full">
-              <span><i class="lni lni-search-alt"></i></span>
-          </div>
-      </div>
-  </div>
-  <ul class="navbar-links">
-    <p-button class="custom-button" label="Login" label="Accedi" styleClass="p-button-secondary" (click)="openLoginModal()"></p-button>
-    <p-button class="custom-button" label="Register" label="Registrati" styleClass="p-button-secondary" (click)="openRegisterModal()"></p-button>
-  </ul>
-</nav>
-
--->
 
 <nav class="navbar" style="display: flex; justify-content: space-between">
   <div class="navbar-logo">
@@ -82,10 +47,6 @@ justify-content: space-between;
           <i class="lni lni-user"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <i
-            class="pi pi-user"
-            style="font-size: 1.5rem; margin-right: 7px"
-          ></i>
 
           <p-toast></p-toast>
           <p-menu #menu [model]="items" [popup]="true"></p-menu>

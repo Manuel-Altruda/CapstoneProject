@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'hotel-details/:id', component: HotelDetailsComponent },
   { path: 'volo', component: VoloComponent },
+  { path: 'volo-details', component: VoloDetailsComponent },
   { path: 'volo-details/:id', component: VoloDetailsComponent },
   { path: 'prenotazione-hotel', component: PrenotazioneHotelComponent},
   { path: 'pagamento', component: PagamentoComponent },

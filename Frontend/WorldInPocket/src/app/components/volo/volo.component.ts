@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RicercaService } from 'src/app/service/ricerca.service';
 import { VoloService } from 'src/app/service/volo.service';
@@ -11,49 +12,67 @@ import { VoloService } from 'src/app/service/volo.service';
 })
 export class VoloComponent implements OnInit {
   responsiveOptions: any[] | undefined;
-  destinazione: string = '';
-  dataCheckIn: string = '';
-  dataCheckOut: string = '';
-  numeroPasseggeri: number = 1;
-  prezzo: number = 0;
-  voli: any[] | undefined;
-  volo: any;
-  @Input() risultatiRicerca: any[] = [];
+  searchForm !: FormGroup;
+  @Input() flightResults: any[] = [];
+  risultatiRicerca: any[] = [];
 
   constructor(
     private voloSvc: VoloService,
     private router: Router,
-    private ricercaService: RicercaService,
+    private formBuilder: FormBuilder,
     private http: HttpClient
-  ) {}
+  ) {
+    this.searchForm = this.formBuilder.group({
+      trip: ['Round Trip', Validators.required],
+      origin: ['', Validators.required],
+      destinazione: ['', Validators.required],
+      dataCheckIn: ['', [Validators.required, this.dateFormatValidator]],
+      dataCheckOut: [''] ,
+      numeroPasseggeri: [1, [Validators.required, Validators.min(1), Validators.max(400)]]
+    });
 
-  ngOnInit(): void {}
-  cercaVoli() {
-    if (this.destinazione && this.dataCheckIn && this.dataCheckOut && this.numeroPasseggeri && this.prezzo) {
-      const config = {
-        api_key: '6501f56d9b605a57eb792907',
-        departure_airport_code: this.destinazione,
-        arrival_airport_code: this.destinazione,
-        departure_date: this.dataCheckIn,
-        number_of_adults: this.numeroPasseggeri,
-        cabin_class: 'economy',
-        currency: 'USD',
-        destinazione: this.destinazione,
-        dataCheckIn: this.dataCheckIn,
-        dataCheckOut: this.dataCheckOut,
-        numeroPasseggeri: this.numeroPasseggeri,
-      };
+  }
 
-      this.voloSvc.cercaVoli(config).subscribe((risultati) => {
-        this.risultatiRicerca = risultati;
-        console.log('Risultati della ricerca:', risultati);
-      });
+  dateFormatValidator = Validators.pattern(/^\d{4}-\d{2}-\d{2}$/);
+
+  ngOnInit(): void {
+   /* this.searchForm = this.formBuilder.group({
+      trip: ['Road Trip', Validators.required],
+      fromPlace: ['', Validators.required],
+      toPlace: ['', Validators.required],
+      travelDate: ['', [Validators.required, this.dateFormatValidator]],
+      returnDate: [''],
+      noOfTravelers: [1, [Validators.required, Validators.min(1), Validators.max(8)]]
+    });*/
+  }
+
+  onSubmit() {
+    console.log('SUBMIT CLICK');
+    if (this.searchForm.valid) {
+      const formData = this.searchForm.value;
+      const params = new HttpParams({ fromObject: formData });
+
+      this.voloSvc.cercaVoli(formData).subscribe(
+        (response: any) => {
+          console.log('HTTP request successful:', response);
+          this.flightResults = response;
+          /*this.router.navigate(['/volo-details'], { state: { results: this.flightResults } });*/
+        },
+        (error) => {
+          console.error('Errore nella richiesta HTTP:', error);
+        }
+      );
     } else {
-      console.error('Alcune variabili non sono definite o hanno valori mancanti.');
+      alert('Per favore, completa tutti i campi obbligatori e verifica i dati inseriti.');
     }
   }
+
+
+
 
   vaiADettaglioVolo(id: number) {
     this.router.navigate(['volo-details', id]);
   }
+
+
 }

@@ -5,6 +5,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { AvatarModule } from 'primeng/avatar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MessagesModule } from 'primeng/messages';
 import { PasswordModule } from 'primeng/password';
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
+import { Validators } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AppRoutingModule } from './app-routing.module';
@@ -91,6 +93,7 @@ import { RicercaService } from './service/ricerca.service';
     GalleriaModule,
     InputTextModule,
     CarouselModule,
+    AvatarModule,
     ConfirmDialogModule,
     ToolbarModule,
     RadioButtonModule,
@@ -98,6 +101,7 @@ import { RicercaService } from './service/ricerca.service';
     TagModule,
     FormsModule,
     CalendarModule,
+
     CardModule,
     ProgressSpinnerModule,
     PasswordModule,
