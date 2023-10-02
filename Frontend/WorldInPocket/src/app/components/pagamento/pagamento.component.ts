@@ -53,7 +53,6 @@ export class PagamentoComponent implements OnInit {
       this.prenotazione = p!;
     })
 
-
   }
 
   ngOnInit(): void {

@@ -1,3 +1,7 @@
+* {
+  color: #000 !important;
+}
+
 .form-group {
   display: flex;
   justify-content: center;
@@ -468,7 +472,7 @@ header {
   width: 70%;
   .flightOnward,
   .flightReturn {
-    display: none;
+
   }
   table {
     border-collapse: collapse;

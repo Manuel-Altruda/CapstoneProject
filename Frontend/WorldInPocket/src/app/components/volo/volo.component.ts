@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IrispostaVoli } from 'src/app/interfaces/IrispostaVoli';
 import { RicercaService } from 'src/app/service/ricerca.service';
 import { VoloService } from 'src/app/service/volo.service';
 
@@ -13,7 +14,7 @@ import { VoloService } from 'src/app/service/volo.service';
 export class VoloComponent implements OnInit {
   responsiveOptions: any[] | undefined;
   searchForm !: FormGroup;
-  @Input() flightResults: any[] = [];
+  @Input() flightResults !: IrispostaVoli [];
   risultatiRicerca: any[] = [];
 
   constructor(
@@ -34,16 +35,7 @@ export class VoloComponent implements OnInit {
 
   dateFormatValidator = Validators.pattern(/^\d{4}-\d{2}-\d{2}$/);
 
-  ngOnInit(): void {
-   /* this.searchForm = this.formBuilder.group({
-      trip: ['Road Trip', Validators.required],
-      fromPlace: ['', Validators.required],
-      toPlace: ['', Validators.required],
-      travelDate: ['', [Validators.required, this.dateFormatValidator]],
-      returnDate: [''],
-      noOfTravelers: [1, [Validators.required, Validators.min(1), Validators.max(8)]]
-    });*/
-  }
+  ngOnInit(): void { }
 
   onSubmit() {
     console.log('SUBMIT CLICK');

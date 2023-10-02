@@ -51,8 +51,8 @@
     </div>
   </div>
   <div id="FlightResult" >
-    <div  class="beforeSearch" *ngIf="flightResults.length === 0"><i class="fa fa-fighter-jet" aria-hidden="true"></i>Please Make Fight Search</div>
-    <div *ngIf="flightResults.length > 0" class="flightOnward flightResultWrapper">
+    <div  class="beforeSearch" *ngIf="flightResults == null"><i class="fa fa-fighter-jet" aria-hidden="true"></i>Please Make Fight Search</div>
+    <div *ngIf="flightResults != null" class="flightOnward flightResultWrapper">
       <div class="flightResultHeader">
         <div class="headerStartingDate">
           <h4 class="headStartLoc"> Origin </h4>
@@ -76,14 +76,14 @@
           <th>Numero Volo</th>
           <th>Prezzo</th>
         </tr>
-        <tr *ngFor="let flight of flightResults">
-          <td>{{ flight.origin }}</td>
-          <td>{{ flight.destinazione }}</td>
-          <td>{{ flight.dataCheckIn }}</td>
-          <td>{{ flight.dataCheckOut }}</td>
-          <td>{{ flight.compagniaAerea }}</td>
-          <td>{{ flight.numeroVolo }}</td>
-          <td>{{ flight.prezzo }}</td>
+        <tr *ngIf = "flightResults[0]">
+          <td>{{ flightResults[0].origin }}</td>
+          <td>{{ flightResults[0].destinazione }}</td>
+          <td>{{ flightResults[0].dataCheckIn }}</td>
+          <td>{{ flightResults[0].dataCheckOut }}</td>
+          <td>{{ flightResults[0].compagniaAerea }}</td>
+          <td>{{ flightResults[0].numeroVolo }}</td>
+          <td>{{ flightResults[0].prezzo }}</td>
         </tr>
       </table>
     </div>
