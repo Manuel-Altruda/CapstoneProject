@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,22 +20,18 @@ public class PrenotazioneAlloggio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @ManyToOne
-    @JoinColumn(name = "alloggio_id")
-    private Alloggio alloggio;
-    
+     
     private String utenteEmail;
     
     @Column(name = "numero_persone")
 	private int numeroPersone;
-	
+	  
 	@ManyToOne
-	@JoinColumn(name = "hotel_id") 
+	@JoinColumn(name = "hotel_id")
 	private Hotel hotel;
 	
-    @Column(name = "tipo_alloggio")
-    private String tipoAlloggio;
+    @Column(name = "tipo_hotel")
+    private String tipoHotel;
     
     @ManyToOne
     @JoinColumn(name = "destinazione_id")
@@ -46,6 +43,7 @@ public class PrenotazioneAlloggio {
     @Column(name = "data_check_out")
     private Date dataCheckOut;
     
+  
     private double prezzoPerNotte;
     @ManyToOne
 	private Iricevuta iricevuta;
@@ -106,12 +104,12 @@ public class PrenotazioneAlloggio {
     }
     
     
-	public String getTipoAlloggio() {
-		return tipoAlloggio;
+	public String getTipoHotel() {
+		return tipoHotel;
 	}
 
-	public void setTipoAlloggio(String tipoAlloggio) {
-		this.tipoAlloggio = tipoAlloggio;
+	public void setTipoHotel(String tipoHotel) {
+		this.tipoHotel = tipoHotel;
 	}
 
 	public int getNumeroPersone() {

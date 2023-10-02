@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 //import com.WorldInPocket.Spring.security.Request.PrenotazioneAlloggioRequest;
-import com.WorldInPocket.Spring.security.entity.Alloggio;
+
+import com.WorldInPocket.Spring.security.entity.Hotel;
 //import com.WorldInPocket.Spring.security.entity.Alloggio;
 import com.WorldInPocket.Spring.security.entity.PrenotazioneAlloggio;
 import com.WorldInPocket.Spring.security.repository.PrenotazioneAlloggioRepository;
@@ -105,21 +106,21 @@ public class PrenotazioneAlloggioService {
 //	return false;
 //}
 
-	public List<PrenotazioneAlloggio> getPrenotazioniAlloggio(Alloggio alloggio) {
+	public List<PrenotazioneAlloggio> getPrenotazioniAlloggio(Hotel hotel) {
         
-        List<PrenotazioneAlloggio> prenotazioni = prenotazioneAlloggioRepository.findByAlloggio(alloggio);
+        List<PrenotazioneAlloggio> prenotazioni = prenotazioneAlloggioRepository.findByHotel(hotel);
 
        
         return prenotazioni;
     }
 
-	public Alloggio getPrenotazioniAlloggio() {
+	public Hotel getPrenotazioniAlloggio() {
 		return null;
 	}
 
-	public List<PrenotazioneAlloggio> prenotaAlloggio(Alloggio prenotazioniAlloggio, Date dataCheckIn, Date dataCheckOut,
+	public List<PrenotazioneAlloggio> prenotaAlloggio(Hotel prenotazioniAlloggio, Date dataCheckIn, Date dataCheckOut,
 			int numeroPersone) {
-		List<PrenotazioneAlloggio> prenotazioni = prenotazioneAlloggioRepository.findByAlloggio(prenotazioniAlloggio);
+		List<PrenotazioneAlloggio> prenotazioni = prenotazioneAlloggioRepository.findByHotel(prenotazioniAlloggio);
 
        
         return prenotazioni;

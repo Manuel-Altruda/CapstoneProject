@@ -31,46 +31,32 @@ import com.WorldInPocket.Spring.security.service.VoloService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/flight")
+@RequestMapping("/api/voli")
 public class VoloController {
-	
+	@Autowired
 	private VoloService voloService;
-	private final FlightapiClient flightapiClient;
-	
-	 public VoloController(FlightapiClient flightapiClient) {
-	        this.flightapiClient = flightapiClient;
-	    }
 
     @GetMapping("/cerca-voli")
     public ResponseEntity<List<Volo>> cercaVoli(
+            //@RequestParam String trip,
+            @RequestParam String origin,
             @RequestParam String destinazione,
-            @RequestParam  LocalDate dataCheckIn,
-            @RequestParam  LocalDate dataCheckOut,
-            @RequestParam int numeroPasseggeri,
-            @RequestParam(name = "prezzo", required = false, defaultValue = "0.0") double prezzo) {
-    	FlightsResponse flightsResponse = null;
-		try {
-			flightsResponse = flightapiClient.getFlights("ROM", "LON");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	
-    	List<Volo> voli = flightsResponse.getData().stream().map(flight -> new Volo(
-    			flight.getOrigin(),
-                flight.getCompagniaAerea(),
-                flight.getNumeroVolo(),
-                flight.getDestinazione(),
-                flight.getDescrizione(),
-                flight.getDataCheckIn(),
-                flight.getDataCheckOut(),
-                flight.getNumeroPasseggeri(),
-                flight.getPrezzo()
-        )).collect(Collectors.toList());
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataCheckIn,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataCheckOut,
+            @RequestParam int numeroPasseggeri)
+             {
     	
-    	List<Volo> risultatiRicerca = voloService.cercaVoli(destinazione, dataCheckIn, dataCheckOut, numeroPasseggeri,prezzo);
-        return new ResponseEntity<>(risultatiRicerca, HttpStatus.OK);
+    	List<Volo> risultatiRicerca = voloService.cercaVoli(origin, destinazione, dataCheckIn, dataCheckOut, numeroPasseggeri);
+        return new ResponseEntity<>(risultatiRicerca, HttpStatus.OK); 
+        }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Volo> getVoloById(@PathVariable Long id) {
+        Volo volo = voloService.getVoloById(id);
+        if (volo != null) {
+            return new ResponseEntity<>(volo, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-	
 }

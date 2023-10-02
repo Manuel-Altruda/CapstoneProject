@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.WorldInPocket.Spring.security.Request.RicercaAlloggiRequest;
 import com.WorldInPocket.Spring.security.Request.RicercaVoliRequest;
-import com.WorldInPocket.Spring.security.entity.Alloggio;
+import com.WorldInPocket.Spring.security.entity.Hotel;
 import com.WorldInPocket.Spring.security.entity.Volo;
 
 @Service
@@ -20,7 +20,7 @@ public class RicercaService {
 //    private VoloProviderClient voloProviderClient;
 
 	/*da continuare*/
-    public List<Alloggio> cercaAlloggi(RicercaAlloggiRequest request) {
+    public List<Hotel> cercaAlloggi(RicercaAlloggiRequest request) {
 		return null;
     }
 

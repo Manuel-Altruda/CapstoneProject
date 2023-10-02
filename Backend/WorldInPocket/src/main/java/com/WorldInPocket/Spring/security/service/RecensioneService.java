@@ -22,8 +22,8 @@ public class RecensioneService {
         return recensioneRepository.findById(id).orElse(null);
     }
     
-    public List<Recensione> getRecensioniByAlloggio(Long alloggioId) {
-        return recensioneRepository.findByAlloggioId(alloggioId);
+    public List<Recensione> getRecensioniByAlloggio(Long hotelId) {
+        return recensioneRepository.findByHotelId(hotelId);
     }
     
     public Recensione updateRecensione(Long recensioneId, Recensione nuovaRecensione) {

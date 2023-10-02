@@ -1,6 +1,7 @@
 package com.WorldInPocket.Spring.security.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -22,6 +23,7 @@ import java.util.Set;
 
 
 @Getter
+@Setter
 @Entity
 @ToString
 @Table(name = "iricevuta") 
@@ -29,7 +31,7 @@ public class Iricevuta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @ManyToOne
     private User user;
 

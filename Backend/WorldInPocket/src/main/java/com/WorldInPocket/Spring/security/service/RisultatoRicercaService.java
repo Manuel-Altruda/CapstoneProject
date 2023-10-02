@@ -7,19 +7,19 @@ import org.springframework.stereotype.Service;
 
 import com.WorldInPocket.Spring.security.dto.RisultatoRicercaAlloggiDTO;
 import com.WorldInPocket.Spring.security.dto.RisultatoRicercaVoliDTO;
-import com.WorldInPocket.Spring.security.entity.Alloggio;
+import com.WorldInPocket.Spring.security.entity.Hotel;
 import com.WorldInPocket.Spring.security.entity.Volo;
 
 @Service
 public class RisultatoRicercaService {
 
-	public List<RisultatoRicercaAlloggiDTO> mapToAlloggiDTO(List<Alloggio> alloggi) {
+	public List<RisultatoRicercaAlloggiDTO> mapToAlloggiDTO(List<Hotel> hotels) {
      
         List<RisultatoRicercaAlloggiDTO> alloggiDTO = new ArrayList<>();
-        for (Alloggio alloggio : alloggi) {
+        for (Hotel alloggio : hotels) {
             RisultatoRicercaAlloggiDTO dto = new RisultatoRicercaAlloggiDTO();
             dto.setId(alloggio.getId());
-            dto.setNome(alloggio.getNome());
+            dto.setNome(alloggio.getName());
             dto.setDescrizione(alloggio.getDescrizione());
             dto.setPrezzoPerNotte(alloggio.getPrezzoPerNotte());
             alloggiDTO.add(dto);

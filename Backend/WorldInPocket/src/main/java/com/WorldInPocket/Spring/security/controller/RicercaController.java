@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.WorldInPocket.Spring.security.Request.RicercaAlloggiRequest;
 import com.WorldInPocket.Spring.security.Request.RicercaVoliRequest;
-import com.WorldInPocket.Spring.security.entity.Alloggio;
+import com.WorldInPocket.Spring.security.entity.Hotel;
 import com.WorldInPocket.Spring.security.entity.Volo;
 import com.WorldInPocket.Spring.security.service.RicercaService;
 
@@ -24,8 +24,8 @@ public class RicercaController {
     private RicercaService ricercaService;
 
     @PostMapping("/alloggi")
-    public ResponseEntity<List<Alloggio>> ricercaAlloggi(@RequestBody RicercaAlloggiRequest request) {
-        List<Alloggio> risultatiRicerca = ricercaService.cercaAlloggi(request);
+    public ResponseEntity<List<Hotel>> ricercaAlloggi(@RequestBody RicercaAlloggiRequest request) {
+        List<Hotel> risultatiRicerca = ricercaService.cercaAlloggi(request);
         return new ResponseEntity<>(risultatiRicerca, HttpStatus.OK);
     }
 

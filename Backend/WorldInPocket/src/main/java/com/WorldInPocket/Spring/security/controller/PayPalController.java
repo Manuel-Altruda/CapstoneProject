@@ -26,37 +26,16 @@ import com.WorldInPocket.Spring.security.service.PaypalService;
 public class PayPalController {
 	
 	@Autowired private PaypalService payPalService;
-	@Autowired private UserRepository userRepository;
-	
-	 @PostMapping  
-	 @PreAuthorize("hasRole('USER')")
-	 public ResponseEntity<?> create(@RequestBody RicevutaDTO r, @AuthenticationPrincipal UserDetails userDetails) {
-		 if (userDetails == null) {
-	            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
-	        }
-		 String username = userDetails.getUsername();
-	        User user = userRepository.findByUsername(username);
-	        if (user == null) {
-	            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-	        }
-		 return new ResponseEntity<String>(payPalService.createOrder(r), HttpStatus.CREATED);
-	 }
 
-	 @PostMapping("/{orderId}")
-	 @PreAuthorize("hasRole('USER')")
-	 public ResponseEntity<?> create(@PathVariable String orderId, @AuthenticationPrincipal UserDetails userDetails) {
-		 if (userDetails == null) {
-	            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
-	        }
-		 String username = userDetails.getUsername();
-		 User user = userRepository.findByUsername(username);
-	        if (user == null) {
-	            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-	        }
-		 return new ResponseEntity<String>(payPalService.captureOrder(orderId), HttpStatus.CREATED);
-	 }
-	
-	
-	
-	
+    @PostMapping
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> create(@RequestBody RicevutaDTO r) {
+        return new ResponseEntity<String>(payPalService.createOrder(r), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{orderId}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> create(@PathVariable String orderId) {
+        return new ResponseEntity<String>(payPalService.captureOrder(orderId), HttpStatus.CREATED);
+    }	
 }

@@ -17,14 +17,14 @@ public class Recensione {
     private Long destinazioneId;
     @ManyToOne
     @JoinColumn(name = "alloggio_id")
-    private Alloggio alloggio;
+    private Hotel hotel;
 
-    public Alloggio getAlloggio() {
-		return alloggio;
+    public Hotel getAlloggio() {
+		return hotel;
 	}
 
-	public void setAlloggio(Alloggio alloggio) {
-		this.alloggio = alloggio;
+	public void setAlloggio(Hotel hotel) {
+		this.hotel = hotel;
 	}
 
 	private String commento;

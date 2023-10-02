@@ -14,7 +14,7 @@ public interface VoloRepository extends JpaRepository<Volo, Long>{
 	
 	List<Volo> findByDestinazioneAndDataCheckInBetween(String destinazione, Date dataCheckIn, Date dataCheckOut);
 
-	List<Volo> findByDestinazioneAndDataCheckInGreaterThanEqualAndDataCheckOutLessThanEqualAndNumeroPasseggeriLessThanEqualAndPrezzoLessThanEqual(
-			String destinazione, LocalDate dataCheckIn, LocalDate dataCheckOut, int numeroPasseggeri, double prezzo);
+	List<Volo> findByOriginAndDestinazioneAndDataCheckInGreaterThanEqualAndDataCheckOutLessThanEqualAndNumeroPasseggeriLessThanEqual(
+			String origin, String destinazione, LocalDate dataCheckIn, LocalDate dataCheckOut, int numeroPasseggeri );
 	
 }

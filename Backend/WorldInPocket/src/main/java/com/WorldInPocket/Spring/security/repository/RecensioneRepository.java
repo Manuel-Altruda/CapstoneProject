@@ -10,6 +10,6 @@ public interface RecensioneRepository extends JpaRepository<Recensione, Long> {
 	
     List<Recensione> findByDestinazioneId(Long destinazioneId);
     
-    List<Recensione> findByAlloggioId(Long alloggioId);
+    List<Recensione> findByHotelId(Long HotelId);
     
 }

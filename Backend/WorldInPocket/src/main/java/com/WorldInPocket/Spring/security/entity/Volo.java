@@ -13,7 +13,7 @@ public class Volo {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private final String origin;
+	private String origin;
     private String compagniaAerea;
     private String numeroVolo;
     private String destinazione;
@@ -24,18 +24,22 @@ public class Volo {
     private double prezzo;
     
     
-    public Volo(String origin, String compagniaAerea, String numeroVolo, String destinazione, String descrizione, LocalDate dataCheckIn, LocalDate dataCheckOut, int numeroPasseggeri, double prezzo) {
-        this.origin = origin;
-        this.compagniaAerea = compagniaAerea;
-        this.numeroVolo = numeroVolo;
-        this.destinazione = destinazione;
-        this.descrizione = descrizione;
-        this.dataCheckIn = dataCheckIn;
-        this.dataCheckOut = dataCheckOut;
-        this.numeroPasseggeri = numeroPasseggeri;
-        this.prezzo = prezzo;
+    @Override
+    public String toString() {
+        return "Volo{" +
+                "  origin='" + origin + '\'' +
+                ", compagniaAerea='" + compagniaAerea + '\'' +
+                ", numeroVolo='" + numeroVolo + '\'' +
+                ", destinazione='" + destinazione + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", dataCheckIn=" + dataCheckIn +
+                ", dataCheckOut=" + dataCheckOut +
+                ", numeroPasseggeri=" + numeroPasseggeri +
+                ", prezzo=" + prezzo +
+                '}';
     }
-    
+   
+
 	public Long getId() {
 		return id;
 	}
@@ -64,16 +68,16 @@ public class Volo {
 		return dataCheckIn;
 	}
 	
-	public void setDataCheckIn(LocalDate dataCheckIn) {
-		this.dataCheckIn = dataCheckIn;
+	public void setDataCheckIn(LocalDate date) {
+		this.dataCheckIn = date;
 	}
 	
 	public LocalDate getDataCheckOut() {
 		return dataCheckOut;
 	}
 	
-	public void setDataCheckOut(LocalDate dataCheckOut) {
-		this.dataCheckOut = dataCheckOut;
+	public void setDataCheckOut(LocalDate date) {
+		this.dataCheckOut = date;
 	}
 	
 	public int getNumeroPasseggeri() {
@@ -110,6 +114,10 @@ public class Volo {
 
 	public String getOrigin() {
 		return origin;
+	}
+
+	public String setOrigin(String origin) {
+		return this.origin = origin;
 	}
 	
     

@@ -19,6 +19,4 @@ import lombok.Setter;
 public class RicevutaDTO {
 	private JWTAuthResponse user;
 	private Set<PrenotazioneAlloggio> prenotazioni;
-	
-
 }

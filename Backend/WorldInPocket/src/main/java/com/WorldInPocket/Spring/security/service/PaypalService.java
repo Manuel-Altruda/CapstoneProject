@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class PaypalService {
-	private final String apiBaseUrl="https://api-m.sandbox.paypal.com/";
+	private final String apiBaseUrl="https://api-m.sandbox.paypal.com";
 	
 	@Value("${paypal.clientId}")
     private String clientId;
@@ -70,14 +70,14 @@ public class PaypalService {
 	
 	public String createOrder(RicevutaDTO ric) {
 		System.out.println(ric.getUser());
-
+		
         try {
             Iricevuta ricevuta=new Iricevuta();
             ricevuta.setPrenotazioni(ric.getPrenotazioni());
             ricevuta.setUser(userService.getUserByEmailOrPassword(ric.getUser().getUsername()));
-            String accessToken=getAccessToken();
-            double totPrice = calculateTotalPrice(ricevuta);
-            
+            ricevuta.setTotPrice(calculateTotalPrice(ricevuta));
+            String accessToken = getAccessToken();
+           
             final String url=apiBaseUrl+"/v2/checkout/orders";
 
             HttpHeaders headers = new HttpHeaders();

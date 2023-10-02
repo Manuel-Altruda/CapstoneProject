@@ -9,29 +9,28 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 //import com.WorldInPocket.Spring.security.Request.PrenotazioneAlloggioRequest;
-import com.WorldInPocket.Spring.security.entity.Alloggio;
+
 //import com.WorldInPocket.Spring.security.entity.Alloggio;
 import com.WorldInPocket.Spring.security.entity.Destinazione;
+import com.WorldInPocket.Spring.security.entity.Hotel;
 import com.WorldInPocket.Spring.security.entity.PrenotazioneAlloggio;
 
 public interface PrenotazioneAlloggioRepository extends JpaRepository<PrenotazioneAlloggio, Long> {
 
-	List<PrenotazioneAlloggio> findByAlloggioNomeContaining(String keyword);
+	List<PrenotazioneAlloggio> findByHotelNameContaining(String name);
 	
-	List<PrenotazioneAlloggio> findByAlloggioNome(String nome);
+	List<PrenotazioneAlloggio> findByHotel(Hotel hotel);
 	
 	@Query("SELECT pa FROM PrenotazioneAlloggio pa WHERE pa.dataCheckIn = :dataCheck")
 	List<PrenotazioneAlloggio> findByDataCheck(@Param("dataCheck") Date dataCheck);
 	
-	List<PrenotazioneAlloggio> findByDestinazioneAndTipoAlloggioAndDataCheckInBetween(Destinazione destinazione, String tipoAlloggio, Date checkIn, Date checkOut);
+	List<PrenotazioneAlloggio> findByDestinazioneAndTipoHotelAndDataCheckInBetween(Destinazione destinazione, String tipoHotel, Date checkIn, Date checkOut);
 	
-	List<PrenotazioneAlloggio> findByTipoAlloggio(String tipoAlloggio);
+	List<PrenotazioneAlloggio> findByTipoHotel(String tipoHotel);
 
 	List<PrenotazioneAlloggio> findByUtenteEmail(String emailUtente);
 
 	List<PrenotazioneAlloggio> findByDataCheckOut(Date dataCheckOut);
-
-	List<PrenotazioneAlloggio> findByAlloggio(Alloggio alloggio);
 
 	//List<PrenotazioneAlloggio> save(PrenotazioneAlloggioRequest prenotazioneAlloggioRequest);
 	
