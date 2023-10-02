@@ -50,7 +50,7 @@ export class PagamentoComponent implements OnInit {
 
     this.prenotazioneSvc.getPrenotazione().subscribe( (p) => {
       console.log(p);
-      this.prenotazione != p;
+      this.prenotazione = p!;
     })
 
 

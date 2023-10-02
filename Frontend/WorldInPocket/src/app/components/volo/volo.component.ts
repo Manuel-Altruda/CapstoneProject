@@ -23,7 +23,6 @@ export class VoloComponent implements OnInit {
     private http: HttpClient
   ) {
     this.searchForm = this.formBuilder.group({
-      trip: ['Round Trip', Validators.required],
       origin: ['', Validators.required],
       destinazione: ['', Validators.required],
       dataCheckIn: ['', [Validators.required, this.dateFormatValidator]],
@@ -48,6 +47,7 @@ export class VoloComponent implements OnInit {
 
   onSubmit() {
     console.log('SUBMIT CLICK');
+    console.log('FORM DATA:', this.searchForm.value);
     if (this.searchForm.valid) {
       const formData = this.searchForm.value;
       const params = new HttpParams({ fromObject: formData });

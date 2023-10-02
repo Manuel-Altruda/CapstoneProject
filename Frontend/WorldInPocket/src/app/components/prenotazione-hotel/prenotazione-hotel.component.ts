@@ -24,21 +24,10 @@ export class PrenotazioneHotelComponent {
   hotelId: any;
   user !: IUser;
   hotel !: iHotel;
-  /*
-  Iricevuta: Iricevuta = {
-    orderID: '', // Inizializza con i valori predefiniti o vuoti
-    user: {} as IUser, // Inizializza con i valori predefiniti o vuoti
-    roomType: '',
-    numberOfGuests: 0,
-    id: this.orderID,
-    selectedHotel: null, // Inizializza con i valori predefiniti o vuoti
-    prenotazioni: [],
-    captureTime: new Date(),
-    totPrice: 0,
-  };*/
+  dataPartenza:any;
+  dataArrivo:any;
 
   constructor(
-    //private prenotazioneService: PrenotazioneService,
     private http: HttpClient,
     private router: Router,
     private route : ActivatedRoute,
@@ -47,9 +36,14 @@ export class PrenotazioneHotelComponent {
     private hotelSvc : HotelService,
     private prenotazioneService: PrenotazioneService
   ) {
-    authSvc.isUserLogged.subscribe(u => this.user != u)
-    hotelSvc.getHotelById(route.snapshot.paramMap.get("id")!).subscribe(hotel => this.hotel = hotel)
-
+    authSvc.isUserLogged.subscribe(u => this.user = u!)
+    //hotelSvc.getHotelById(route.snapshot.paramMap.get("hotelId")!).subscribe(hotel => {this.hotel = hotel; console.log(hotel)})
+    route.queryParams.subscribe(params=>{
+      console.log(params);
+      this.dataPartenza=params['checkIn'];
+      this.dataArrivo=params['checkOut'];
+      hotelSvc.getHotelById(params['hotelId']).subscribe(hotel=> this.hotel=hotel);
+    })
 
     this.prenotazioneForm = this.fb.group({
       name: ['', Validators.required],
@@ -61,8 +55,8 @@ export class PrenotazioneHotelComponent {
       postCode: ['', Validators.required],
       people: ['', Validators.required],
       country: ['', Validators.required],
-      arrive: ['', Validators.required],
-      depart: ['', Validators.required],
+      bedding: ['', Validators.required],
+      roomType: ['', Validators.required],
       comments: [''],
     });
   }
@@ -97,18 +91,18 @@ export class PrenotazioneHotelComponent {
   }
 
   effettuaPrenotazione() {
-    const ricevuta : Iricevuta = {
-      roomType: '',
-      orderID: '',
-      user: this.user
+    const prenotazione : Iprenotazione = {
+      hotel: this.hotel,
+      user: this.user,
+      details: this.prenotazioneForm.value
     }
 
-    console.log(this.prenotazioneForm.value);
-  }
+    prenotazione.details.arrive=this.dataArrivo;
+    prenotazione.details.depart=this.dataPartenza;
 
-  navigateToPaymentPage() {
-    if (this.isFormValid()) {
-      this.router.navigate(['/pagamento']);
-    }
+    console.log("Submit: ", prenotazione)
+
+    this.prenotazioneService.setPrenotazione(prenotazione);
+    this.router.navigate(['/pagamento']);
   }
 }

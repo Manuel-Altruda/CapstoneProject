@@ -5,28 +5,45 @@ import { Iricevuta } from '../interfaces/Iricevuta';
 import { environment } from 'src/environments/environment.development';
 import { RicevutaSkl } from '../interfaces/ricevutaSkl';
 import { HttpClient } from '@angular/common/http';
+import { iHotel } from '../interfaces/iHotel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrenotazioneService {
   private ricevutaSubject: BehaviorSubject<Iprenotazione | undefined> = new BehaviorSubject<Iprenotazione | undefined>( undefined );
+  private hotelSubject: BehaviorSubject<iHotel | undefined> = new BehaviorSubject<iHotel | undefined>( undefined );
 
 constructor(private http: HttpClient) {
   let ricevutaStorage: Iprenotazione = JSON.parse( sessionStorage.getItem( 'prenotazione' ) ! );
+  let hotelStorage: iHotel = JSON.parse( sessionStorage.getItem( 'hotel' ) ! );
+
   if (ricevutaStorage) {
     this.ricevutaSubject.next (ricevutaStorage)
   }
+  if (hotelStorage) {
+    this.hotelSubject.next (hotelStorage)
+  }
+}
+
+setHotel(hotel: iHotel): void {
+  sessionStorage.setItem('hotel', JSON.stringify(hotel));
+  this.hotelSubject.next (hotel);
+  console.log ("Set hotel:", hotel);
 }
 
 setPrenotazione(prenotazione: Iprenotazione): void {
   sessionStorage.setItem('prenotazione', JSON.stringify(prenotazione));
   this.ricevutaSubject.next (prenotazione);
-  console.log (prenotazione);
+  console.log ("Set prenotazione:", prenotazione);
 }
 
 getPrenotazione(): Observable<Iprenotazione | undefined> {
   return this.ricevutaSubject.asObservable();
+}
+
+getHotel(){
+  return this.hotelSubject.asObservable();
 }
 
 /*inviaDettagliPrenotazione(dettagli: any): Observable<any> {

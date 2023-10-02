@@ -18,7 +18,7 @@
     <aside id="flightSearch">
       <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" name="searchFlight">
         <div class="radio-toolbar">
-          <input type="radio" id="radioRoundTrip" name="trip" value="Round Trip" formControlName="trip">
+          <input type="radio" id="radioRoundTrip" name="trip" value="Round Trip">
           <label for="radioRoundTrip">Round Trip</label>
         </div>
         <div class="sourceDesination">
@@ -51,7 +51,7 @@
     </div>
   </div>
   <div id="FlightResult" >
-    <div  class="beforeSearch"><i class="fa fa-fighter-jet" aria-hidden="true"></i>Please Make Fight Search</div>
+    <div  class="beforeSearch" *ngIf="flightResults.length === 0"><i class="fa fa-fighter-jet" aria-hidden="true"></i>Please Make Fight Search</div>
     <div *ngIf="flightResults.length > 0" class="flightOnward flightResultWrapper">
       <div class="flightResultHeader">
         <div class="headerStartingDate">
@@ -87,41 +87,7 @@
         </tr>
       </table>
     </div>
-    <div *ngIf="flightResults.length > 0" class="flightReturn flightResultWrapper">
-      <div class="flightResultHeader">
-        <div class="headerStartingDate">
-          <h4 class="returnStartLoc"></h4>
-          <p class="returnStartDate"></p>
-        </div>
-        <div>
-          <i class="exchangeIc fa fa-long-arrow-right"></i>
-        </div>
-        <div class="headeReturnDate">
-          <h4 class="returnEndLoc"></h4>
-          <p class="returnEndDate"></p>
-        </div>
-      </div>
-      <table>
-        <tr>
-          <th>Origin</th>
-          <th>Destinazione</th>
-          <th>Data Check-In</th>
-          <th>Data Check-Out</th>
-          <th>Compagnia Aerea</th>
-          <th>Numero Volo</th>
-          <th>Prezzo</th>
-        </tr>
-        <tr *ngFor="let flight of flightResults">
-          <td>{{ flight.origin }}</td>
-          <td>{{ flight.destinazione }}</td>
-          <td>{{ flight.dataCheckIn }}</td>
-          <td>{{ flight.dataCheckOut }}</td>
-          <td>{{ flight.compagniaAerea }}</td>
-          <td>{{ flight.numeroVolo }}</td>
-          <td>{{ flight.prezzo }}</td>
-        </tr>
-      </table>
-    </div>
+
 
   </div>
 </section>
