@@ -46,7 +46,7 @@ public class PrenotazioneAlloggioService {
 
             return prenotazioneAlloggioRepository.save(prenotazioneEsistente);
         }
-        return null; // Restituisci null se la prenotazione non esiste
+        return null; 
     }
 
     public boolean deletePrenotazioneAlloggio(Long id) {
