@@ -95,7 +95,7 @@ export class NavbarComponent implements OnInit {
 
     this.dialogService.open(LoginModalComponent, {
       header: 'Accedi',
-      width: '40%',
+      width: '50%',
       contentStyle: {
         'max-height': '500px',
         overflow: 'auto',

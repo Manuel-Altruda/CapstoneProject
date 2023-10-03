@@ -13,4 +13,13 @@
     <li><strong>Nome:</strong> {{ nomeAcquirente }}</li>
     <li><strong>Email:</strong> {{ emailAcquirente }}</li>
   </ul>
+  <p-progressSpinner
+    *ngIf="showSpinner"
+    styleClass="w-4rem h-4rem"
+    strokeWidth="8"
+    fill="var(--surface-ground)"
+    animationDuration=".5s"
+  ></p-progressSpinner>
 </div>
+
+

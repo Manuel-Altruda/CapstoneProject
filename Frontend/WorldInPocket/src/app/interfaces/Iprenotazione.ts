@@ -19,5 +19,11 @@ export interface Iprenotazione {
     bedding:string,
     roomType:string,
     comments:string
+  },
+  payer: {
+    name:{
+      given_name: "Manuel",
+      surname:"Altruda"
+    },
   }
 }

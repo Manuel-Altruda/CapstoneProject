@@ -1,0 +1,30 @@
+{
+  "payer": {
+    "name": {
+      "given_name": "Manuel",
+      "surname": "Altruda"
+    },
+    "address": {
+      "address_line_1": "via carrara",
+      "address_line_2": "12",
+      "admin_area_2": "Avellino",
+      "admin_area_1": "av",
+      "postal_code": "83100",
+      "country_code": "IT"
+    },
+    "email_address": "pippo@mail.it",
+    "phone": {
+      "phone_type": "MOBILE",
+      "phone_number": {
+        "national_number": "348948122"
+      }
+    }
+  },
+  "purchase_units": [
+    {
+      "amount": {
+        "value": "200"
+      }
+    }
+  ]
+}

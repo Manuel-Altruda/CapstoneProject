@@ -1,92 +1,96 @@
-.hotel-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  padding: 20px;
-  width: 80%;
-  max-width: 600px;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&family=Roboto:wght@300&display=swap');
+*{
+  font-family: 'Roboto', sans-serif;
 }
+// .hotel-card {
+//   background-color: #fff;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   margin: 20px auto;
+//   padding: 20px;
+//   width: 80%;
+//   max-width: 600px;
+// }
 
-.hotel-card-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+// .hotel-card-inner {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   text-align: center;
+// }
 
-.hotel-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
+// .hotel-image img {
+//   max-width: 100%;
+//   height: auto;
+//   border-radius: 8px;
+//   margin-bottom: 10px;
+// }
 
-.hotel-details h2 {
-  font-size: 24px;
-  margin: 10px 0;
-}
+// .hotel-details h2 {
+//   font-size: 24px;
+//   margin: 10px 0;
+// }
 
-.hotel-details p {
-  font-size: 16px;
-  margin: 5px 0;
-}
+// .hotel-details p {
+//   font-size: 16px;
+//   margin: 5px 0;
+// }
 
-.no-hotel {
-  text-align: center;
-  margin: 20px auto;
-  font-size: 18px;
-  color: #777;
-}
+// .no-hotel {
+//   text-align: center;
+//   margin: 20px auto;
+//   font-size: 18px;
+//   color: #777;
+// }
 
-.image-thumbnails {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-}
+// .image-thumbnails {
+//   display: flex;
+//   justify-content: center;
+//   gap: 10px;
+//   margin-top: 10px;
+// }
 
-.image-thumbnails img {
-  width: 110px;
-  height: 110px;
-  border: 2px solid transparent;
-  cursor: pointer;
-}
+// .image-thumbnails img {
+//   width: 110px;
+//   height: 110px;
+//   border: 2px solid transparent;
+//   cursor: pointer;
+// }
 
-.image-thumbnails img:hover {
-  border-color: #007bff;
-}
+// .image-thumbnails img:hover {
+//   border-color: #007bff;
+// }
 
-/* Stile per la galleria */
-.image-gallery {
-  text-align: center;
-  margin-top: 40px;
-}
+// /* Stile per la galleria */
+// .image-gallery {
+//   text-align: center;
+//   margin-top: 40px;
+// }
 
-.image-gallery h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
+// .image-gallery h3 {
+//   font-size: 16px;
+//   margin-bottom: 10px;
+// }
 
 
-/* Stile per la card di prenotazione */
-.reservation-card {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
-}
+// /* Stile per la card di prenotazione */
+// .reservation-card {
+//   background-color: #fff;
+//   border: 1px solid #e0e0e0;
+//   border-radius: 8px;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//   padding: 20px;
+//   max-width: 400px;
+//   margin: 0 auto;
+//   text-align: center;
+// }
 
-/* Stile per il titolo della card */
-.reservation-card h2 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
-}
+// /* Stile per il titolo della card */
+// .reservation-card h2 {
+//   font-size: 24px;
+//   color: #333;
+//   margin-bottom: 20px;
+// }
 
 /* Stile per il modulo di prenotazione */
 .reservation-form .form-group {
@@ -141,4 +145,112 @@
   width: calc(50% - 89px);
   margin-left: 110px;
   margin-top: 10rem;
+}
+
+
+/* Stile per il container principale */
+.reservation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Stile per la card dell'hotel */
+.hotel-card {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.hotel-card-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hotel-image {
+  flex: 1;
+  margin-right: 20px;
+  max-width: 300px;
+  img {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+.hotel-details {
+  flex: 2;
+  h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  p {
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0;
+  }
+}
+
+/* Stile per i dettagli aggiuntivi dell'hotel */
+.hotel-details-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Stile per le sezioni di dettagli aggiuntivi */
+.hotel-details-container h3 {
+  font-size: 20px;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* Stile per la galleria di immagini */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  h3 {
+    width: 100%;
+    font-size: 20px;
+    color: #333;
+    margin-top: 20px;
+  }
+  .image-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+/* Stile per il link al modulo di login */
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: #007AFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.text-primary:hover {
+  text-decoration: underline;
 }

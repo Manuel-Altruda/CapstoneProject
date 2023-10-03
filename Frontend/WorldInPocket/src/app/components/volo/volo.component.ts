@@ -28,7 +28,7 @@ export class VoloComponent implements OnInit {
       destinazione: ['', Validators.required],
       dataCheckIn: ['', [Validators.required, this.dateFormatValidator]],
       dataCheckOut: [''] ,
-      numeroPasseggeri: [1, [Validators.required, Validators.min(1), Validators.max(400)]]
+      numeroPasseggeri: [1, [Validators.required, Validators.min(1), Validators.max(800)]]
     });
 
   }

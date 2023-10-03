@@ -1,46 +1,206 @@
-.custom-button {
-  font-size: 10px;
-  margin-right: 10px;
+// .custom-button {
+//   font-size: 10px;
+//   margin-right: 10px;
 
+// }
+
+// .custom-button {
+//   margin-right: 10px; /* Aggiungi margine a destra per separare i pulsanti */
+// }
+
+// /* Stile per spaziare i campi input */
+// .input-container {
+//   margin-bottom: 17px; /* Imposta il margine inferiore per spaziare i campi input */
+// }
+
+// /* Stile per personalizzare l'etichetta (label) */
+// .input-container label {
+//   font-size: 16px; /* Regola la dimensione del testo dell'etichetta */
+// }
+
+
+
+// /* Stile personalizzato per etichette */
+// .label-floating {
+//   position: relative;
+// }
+
+// .label-floating input {
+//   padding-top: 10px; /* Regola il margine superiore per far spazio all'etichetta */
+// }
+
+// .label-floating label {
+//   position: absolute;
+//   top: 8px; /* Posizione dell'etichetta sopra l'input */
+//   left: 16px; /* Margine sinistro dell'etichetta */
+//   transition: top 0.2s ease, left 0.2s ease; /* Aggiungi una transizione per un effetto di scorrimento fluido */
+// }
+
+// /* Stile per etichette in input in cui è stato inserito del testo */
+// .label-floating input:focus + label,
+// .label-floating input:not(:placeholder-shown) + label {
+//   top: -8px; /* Alza l'etichetta quando l'input ha il focus o contiene del testo */
+//   font-size: 12px; /* Dimensione del testo dell'etichetta quando è alzata */
+//   left: 0; /* Sposta l'etichetta a sinistra quando è alzata */
+//   color: #333; /* Colore dell'etichetta quando è alzata */
+// }
+
+
+
+/* Stile per il container del modulo di registrazione */
+.registration-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(133, 42, 95, 0.1);
+  padding: 20px;
+  max-width: 30rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.custom-button {
-  margin-right: 10px; /* Aggiungi margine a destra per separare i pulsanti */
+/* Stile per l'intestazione */
+.registration-container h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-/* Stile per spaziare i campi input */
+/* Stile per i label */
+.registration-container label-floating label {
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Stile per gli input */
+.registration-container .p-inputtext {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Stile per il pulsante di registrazione */
+.registration-container .custom-button {
+  margin-top: 20px;
+  background-color: #007AFF;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.registration-container .custom-button:hover {
+  background-color: #0056b3;
+}
+
+/* Stile per il pulsante di registrazione quando è disabilitato */
+.registration-container .custom-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Stile per il link "Effettua il login" */
+.registration-container .text-center a {
+  text-decoration: none;
+  color: #007AFF;
+  font-weight: bold;
+}
+
+.registration-container .text-center a:hover {
+  text-decoration: underline;
+}
+
+
+/* Stile per il container del modulo di registrazione */
+.bg-gray-100 {
+  background-color: #ffffff;
+}
+
+.max-w-30rem {
+  max-width: 30rem;
+}
+
+.border-round-md {
+  border-radius: 8px;
+}
+
+.shadow-8 {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile per l'intestazione del modulo di registrazione */
+.text-4xl {
+  font-size: 24px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Stile per gli input e label */
 .input-container {
-  margin-bottom: 17px; /* Imposta il margine inferiore per spaziare i campi input */
+  margin: 10px 0;
 }
 
-/* Stile per personalizzare l'etichetta (label) */
-.input-container label {
-  font-size: 16px; /* Regola la dimensione del testo dell'etichetta */
-}
-
-
-
-/* Stile personalizzato per etichette */
 .label-floating {
   position: relative;
 }
 
-.label-floating input {
-  padding-top: 10px; /* Regola il margine superiore per far spazio all'etichetta */
+.w-full {
+  width: 100%;
 }
 
-.label-floating label {
-  position: absolute;
-  top: 8px; /* Posizione dell'etichetta sopra l'input */
-  left: 16px; /* Margine sinistro dell'etichetta */
-  transition: top 0.2s ease, left 0.2s ease; /* Aggiungi una transizione per un effetto di scorrimento fluido */
+.p-float-label label {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
 }
 
-/* Stile per etichette in input in cui è stato inserito del testo */
-.label-floating input:focus + label,
-.label-floating input:not(:placeholder-shown) + label {
-  top: -8px; /* Alza l'etichetta quando l'input ha il focus o contiene del testo */
-  font-size: 12px; /* Dimensione del testo dell'etichetta quando è alzata */
-  left: 0; /* Sposta l'etichetta a sinistra quando è alzata */
-  color: #333; /* Colore dell'etichetta quando è alzata */
+.p-inputtext {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Stile per il pulsante di registrazione */
+.custom-button {
+  width: 100%;
+  background-color: #007AFF;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+  background-color: #0056b3;
+}
+
+/* Stile per il pulsante di registrazione quando è disabilitato */
+.custom-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Stile per il link al modulo di login */
+.text-primary {
+  color: #007AFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.text-primary:hover {
+  text-decoration: underline;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pay-success',
@@ -7,20 +7,27 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./pay-success.component.scss']
 })
 export class PaySuccessComponent implements OnInit {
-
+  showSpinner = false;
   numeroOrdine!: string;
   importoPagato!: number;
   nomeAcquirente!: string;
   emailAcquirente!: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    // Ottieni i dati dinamici dall'URL o da un servizio
-    this.numeroOrdine = '123456';
-    this.importoPagato = 100.00;
-    this.nomeAcquirente = 'Nome Acquirente';
-    this.emailAcquirente = 'email@example.com';
+
+    setTimeout(() => {
+      this.showSpinner = true;
+      setTimeout(() => {
+        this.router.navigate(['/dashboard']);
+      }, 2000);
+    }, 1500);
+
+    this.numeroOrdine = '4897416132144';
+    this.importoPagato = 790.00;
+    this.nomeAcquirente = 'John Doe';
+    this.emailAcquirente = 'sb-yng47u27594608@personal.example.com';
   }
 
 }

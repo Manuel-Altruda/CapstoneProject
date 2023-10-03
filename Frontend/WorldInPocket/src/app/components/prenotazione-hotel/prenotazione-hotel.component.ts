@@ -94,8 +94,13 @@ export class PrenotazioneHotelComponent {
     const prenotazione : Iprenotazione = {
       hotel: this.hotel,
       user: this.user,
-      details: this.prenotazioneForm.value
+      details: this.prenotazioneForm.value,
+      payer: this.prenotazioneForm.value
     }
+
+    const linkPaypal = "https://www.sandbox.paypal.com?cmd=_cart&business=sb-k1jk625923792@business.example.com&upload=1&currency_code=EUR&item_name_1="+this.hotel.name+"&item_number_1=1&amount_1=790&shipping_1=0&cancel_return=http://localhost:4200/pay-error&return=http://localhost:4200/pay-success";
+
+
 
     prenotazione.details.arrive=this.dataArrivo;
     prenotazione.details.depart=this.dataPartenza;
@@ -103,6 +108,11 @@ export class PrenotazioneHotelComponent {
     console.log("Submit: ", prenotazione)
 
     this.prenotazioneService.setPrenotazione(prenotazione);
-    this.router.navigate(['/pagamento']);
+   // this.router.navigate(['/pagamento']);
+    window.open(linkPaypal);
+
   }
+
+
+
 }

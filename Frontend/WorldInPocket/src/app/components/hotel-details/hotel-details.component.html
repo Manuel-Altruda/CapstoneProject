@@ -4,31 +4,60 @@
     <div class="hotel-image">
       <img [src]="selectedImage || selectedHotel.images[0]" alt="{{ selectedHotel.name }} Image">
     </div>
-    <div class="hotel-details">
-      <h2>{{ selectedHotel.name }}</h2>
-      <p>{{ selectedHotel.shortDescription }}</p>
-      <p>Indirizzo: {{ selectedHotel.address1 }}</p>
-      <p>Stelle: {{ selectedHotel.highRate }}</p>
-      <p>Prezzo: {{selectedHotel.price}}</p>
-    </div>
     <div class="image-gallery">
       <h3>Galleria</h3>
       <div class="image-thumbnails">
-        <img *ngFor="let image of selectedHotel.images; let i = index"
-             [src]="image"
-             alt="Thumbnail"
-             (click)="selectImage(image)"
-             [class.selected]="selectedImage === image"
+        <img
+          *ngFor="let image of selectedHotel.images; let i = index"
+          [src]="image"
+          alt="Thumbnail"
+          (click)="selectImage(image)"
+          [class.selected]="selectedImage === image"
         >
       </div>
     </div>
+    <div class="hotel-details-container" *ngIf="selectedHotel">
+      <div class="hotel-description">
+        <h3>Descrizione</h3>
+        <p>{{ selectedHotel.description }}</p>
+      </div>
+      <div class="hotel-services">
+        <h3>Servizi dell'Hotel</h3>
+        <ul>
+          <li>Wi-Fi gratuito</li>
+          <li>Ristorante in loco</li>
+          <li>Parcheggio gratuito</li>
+          <!-- Aggiungi altri servizi qui -->
+        </ul>
+      </div>
+      <div class="hotel-reviews">
+        <h3>Recensioni degli Ospiti</h3>
+        <div class="average-rating">
+          Punteggio Medio: 4.5 / 5
+        </div>
+        <div class="guest-reviews">
+          <!-- Mostra alcune recensioni degli ospiti qui -->
+        </div>
+      </div>
+      <div class="hotel-map">
+        <h3>Posizione dell'Hotel</h3>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.67890!2d0.000000!3d0.000000!4m22!2m11!1e1!2m6!1s...!2s...!4e3!5m5!3m4!1s0x0:0x0!8m2!3d0.000000!4d0.000000!16s%2Fg%2F123abc_xyz!3s...!4v1234567890!5e0!3m2!1sen!2sus!4v1234567890"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+
+    </div>
   </div>
-</div>
-<div class="reservation-card">
-  <div class="reservation-card-inner">
-    <h2>Fai la tua prenotazione</h2>
+
+  <!-- Modulo di prenotazione sulla destra -->
+  <div class="reservation-form-container">
     <div class="reservation-form">
-      <!-- Modulo di prenotazione -->
+      <h2>Fai la tua prenotazione</h2>
       <div class="form-group">
         <label for="checkInDate">Data di Check-in</label>
         <input type="date" id="checkInDate" name="checkInDate" [(ngModel)]="checkInDate">
@@ -37,11 +66,8 @@
         <label for="checkOutDate">Data di Check-out</label>
         <input type="date" id="checkOutDate" name="checkOutDate" [(ngModel)]="checkOutDate">
       </div>
-    </div>
-
-    <div class="reservation-button">
-      <button (click)="avviaPrenotazione()">Prenota ora</button>
+      <div class="reservation-button">
+        <button (click)="avviaPrenotazione()">Prenota ora</button>
+      </div>
     </div>
   </div>
-</div>
-</div>

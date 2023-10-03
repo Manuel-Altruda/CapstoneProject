@@ -22,12 +22,11 @@ declare var paypal: any;
   providers: [ConfirmationService, MessageService],
 })
 export class PagamentoComponent implements OnInit {
-
   @ViewChild('paypal', { static: true }) paypalElement!: ElementRef;
 
   private user: IUser | null = null;
   Iricevuta!: Iricevuta;
-  prenotazione !: Iprenotazione;
+  prenotazione!: Iprenotazione;
   paypalInitialized: boolean = false;
   selectedRoomType: string = '';
   numberOfGuests: number = 1;
@@ -45,18 +44,18 @@ export class PagamentoComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute
   ) {
-    authSvc.isUserLogged.subscribe((u) => {this.user = u
-    console.log(this.user)} );
+    authSvc.isUserLogged.subscribe((u) => {
+      this.user = u;
+      console.log(this.user);
+    });
 
-    this.prenotazioneSvc.getPrenotazione().subscribe( (p) => {
+    this.prenotazioneSvc.getPrenotazione().subscribe((p) => {
       console.log(p);
       this.prenotazione = p!;
-    })
-
+    });
   }
 
   ngOnInit(): void {
-
     this.route.params.subscribe((params) => {
       this.hotelId = params['hotelId'];
     });
@@ -68,6 +67,7 @@ export class PagamentoComponent implements OnInit {
       .Buttons({
         createOrder: (data: any) => {
           console.log(this.prenotazione);
+
           return fetch(environment.payments, {
             method: 'POST',
             headers: {
@@ -77,7 +77,7 @@ export class PagamentoComponent implements OnInit {
             body: JSON.stringify(this.prenotazione),
           })
             .then((res) => res.text())
-            .then(id => {
+            .then((id) => {
               console.log('Risposta PayPal:', id);
               this.orderID = id;
               return id;
