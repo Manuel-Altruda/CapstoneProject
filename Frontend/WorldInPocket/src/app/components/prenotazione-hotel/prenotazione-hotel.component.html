@@ -1,7 +1,7 @@
 <form (ngSubmit)="effettuaPrenotazione()" [formGroup]="prenotazioneForm">
   <!--  Generale -->
   <div class="form-group">
-    <h2 class="heading">Booking & contact</h2>
+    <h2 class="heading">Prenotazione e Contatti</h2>
     <div class="controls">
       <input
         type="text"
@@ -110,7 +110,7 @@
             formControlName="people"
           />
           <label for="people"
-            ><i class="fa fa-male"></i>&nbsp;&nbsp;People</label
+          min="1" max ="6"><i class="fa fa-male"></i>&nbsp;&nbsp;People</label
           >
         </div>
       </div>
@@ -119,8 +119,8 @@
           <i class="fa fa-sort"></i>
           <select class="floatLabel" formControlName="roomType">
             <option value="blank"></option>
-            <option value="deluxe" selected>With Bathroom</option>
-            <option value="Zuri-zimmer">Without Bathroom</option>
+            <option value="deluxe" selected>Senza Balcone</option>
+            <option value="Zuri-zimmer">Con il Balcone </option>
           </select>
           <label for="fruit">Room</label>
         </div>
@@ -140,7 +140,7 @@
     </div>
     <div class="grid">
       <p class="info-text">
-        Se hai qualcosa da chiedere non esitare a scrivere..
+        Se hai qualcosa da chiedere non esitare...
       </p>
       <br />
       <div class="controls">
